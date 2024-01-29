@@ -8,7 +8,7 @@ const readline = require("readline").createInterface({
 readline.question("Enter your height (m): ", (inputHeight) => {
   readline.question("Enter your weight (kg): ", (inputWeight) => {
     // Your if-else statement goes here, using inputHeight and inputWeight
-    let bmi = inputWeight / (inputHeight * inputHeight);
+    let bmi = Math.round(inputWeight / (inputHeight * inputHeight, 1) );
 
     if (bmi < 18.5) {
       console.log(
