@@ -3,9 +3,12 @@
     "authors": "HungDo",
     "version": "1.0.0",
     "scripts": {
-        "test": "npx playwright test"
+        "test-headed": "npx playwright test --headed",
+        "test-headless": "npx playwright test --headless",
+        "test": "npx playwright test",
+        "open-test-ui": "npx playwright test --ui"
     },
     "dependencies": {
-        "@playwright/test": "^1.42.1"
+        "@playwright/test": "1.42.1"
     }
 }
