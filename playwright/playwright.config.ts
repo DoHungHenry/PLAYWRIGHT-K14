@@ -7,6 +7,14 @@ const config: PlaywrightTestConfig = {
     testMatch: '**/*.spec.ts',
     // Set the timeout for each test to 30 seconds
     timeout: 60000,
+    retries: process.env.CI ? 2 : 1,
+    reporter: 'html',
+    use: {
+        headless: false,
+        trace: 'on-first-retry',
+        video: 'on-first-retry',
+        screenshot: 'only-on-failure',
+    },
     projects: [
         {
             name: 'chromium',

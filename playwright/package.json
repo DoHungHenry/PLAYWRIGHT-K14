@@ -9,6 +9,10 @@
         "open-test-ui": "npx playwright test --ui"
     },
     "dependencies": {
-        "@playwright/test": "1.42.1"
+        "@playwright/test": "1.42.1",
+        "dotenv": "^16.4.5"
+    },
+    "devDependencies": {
+        "@types/node": "^20.12.3"
     }
 }
