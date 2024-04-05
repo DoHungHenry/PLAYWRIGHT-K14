@@ -5,7 +5,7 @@
     "scripts": {
         "test-headed": "npx playwright test --headed",
         "test-headless": "npx playwright test --headless",
-        "test": "npx playwright test",
+        "test": "npx playwright test --headed",
         "open-test-ui": "npx playwright test --ui"
     },
     "dependencies": {
