@@ -59,7 +59,8 @@ test('Locate element - Multiple matching', async ({ page }) => {
 
     // use elementHandles() to get all elements
     const elems = await page.locator('a').elementHandles(); // same as page.$$('a')
-
+    
+    await page.pause();
     await elems[10].click();
     await page.waitForLoadState('domcontentloaded');
 
