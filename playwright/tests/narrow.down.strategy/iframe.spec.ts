@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test.only('Narrow down - iframe', async ({ page }) => {
+test('Narrow down - iframe', async ({ page }) => {
     await page.goto('https://the-internet.herokuapp.com/iframe', { waitUntil: 'networkidle' });
     await page.waitForTimeout(2000);
 

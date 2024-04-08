@@ -8,8 +8,8 @@ const config: PlaywrightTestConfig = {
     retries: process.env.CI ? 2 : 1,
     reporter: 'html',
     use: {
-        actionTimeout: 5 * 1000, // like implicit wait
         headless: false,
+        actionTimeout: 5 * 1000, // like implicit wait
         trace: 'on-first-retry',
         video: 'on-first-retry',
         screenshot: 'only-on-failure',
