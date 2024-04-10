@@ -1,4 +1,4 @@
-import { readLine } from "readline-sync";
+const readLine = require("readline-sync");
 const inputNum = getUserInputNum();
 
 switch (inputNum) {
