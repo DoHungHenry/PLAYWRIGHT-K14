@@ -17,3 +17,14 @@ test('Handle JS Alert', async ({ page }) => {
     // wait
     await page.waitForTimeout(3000);
 });
+
+test('Handle JS Alert automatically', async ({ page }) => {
+    await page.goto(url);
+    const jsAlertLct =  page.locator('button[onclick="jsAlert()"]');
+
+    // Trigger the js alert
+    await jsAlertLct.click();
+    
+    // wait
+    await page.waitForTimeout(3000);
+});
