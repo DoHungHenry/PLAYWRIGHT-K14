@@ -14,9 +14,6 @@ test('Handle JS Alert', async ({ page }) => {
     // Trigger the js alert
     await jsAlertLct.click();
     
-
-
     // wait
     await page.waitForTimeout(3000);
-
 });
