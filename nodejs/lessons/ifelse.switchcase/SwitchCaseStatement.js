@@ -1,3 +1,5 @@
+// https://www.youtube.com/watch?v=zVXqwsErZ7c&list=PLBNb67lT6eEK-XelMpNm1-sbaJkJ8BT_0&index=6&t=3620s
+
 const readLine = require("readline-sync");
 const inputNum = getUserInputNum();
 

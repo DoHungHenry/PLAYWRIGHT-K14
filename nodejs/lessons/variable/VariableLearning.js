@@ -1,3 +1,5 @@
+// day 1
+
 let myName = 'Hung';
 let myAge = 20;
 
