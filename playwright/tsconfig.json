@@ -3,7 +3,11 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "baseUrl": "./",
-    "paths": {},
+    "paths": {
+      "@core/*": ["core/*"],
+      "@modules/*": ["modules/*"],
+      "@utilities/*": ["utilities/*"],
+    },
     "lib": ["ES2023", "DOM"]
   }
 }
