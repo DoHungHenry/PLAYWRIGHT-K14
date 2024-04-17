@@ -1,21 +1,15 @@
+import { BaseComponent } from "@modules/base.components/base.component";
 import {Locator} from "@playwright/test";
 
-export class ProductItemComponent {
+export class ProductItemComponent extends BaseComponent {
 
     public static selector = '.product-item';
-    private productTitleLoc = '.product-title';
-    private productPriceLoc = 'span[class*="actual-price"]';
 
     constructor(private component: Locator) {
+        super(component.page());
         this.component = component;
-    }
+    };
 
-    productTitle(): Locator {
-        return this.component.locator(this.productTitleLoc);
-    }
-
-    productPrice(): Locator {
-        return this.component.locator(this.productPriceLoc);
-    }
-
+    productTitle = (): Locator => this.component.locator('.product-title');
+    productPrice = (): Locator => this.component.locator('span[class*="actual-price"]');
 }
