@@ -10,8 +10,8 @@ export class SearchComponent extends BaseComponent{
         this.component = component;
     };
 
-    searchBoxLct = (): Locator => this.component.locator('input[id="small-searchterms"]');
-    searchBtnLct = (): Locator => this.component.locator('input[class*="search-box-button"]');
+    searchBoxLct = (): Locator => this.findLctByLct(this.component, 'input[id="small-searchterms"]');
+    searchBtnLct = (): Locator => this.findLctByLct(this.component, 'input[class*="search-box-button"]');
 
     searchProduct = async (productName: string) => {
         await this.fill(this.searchBoxLct(), productName);

@@ -9,10 +9,10 @@ export class HomePage extends BasePage {
         super(page);
     };
 
-    searchComponent = (): SearchComponent => new SearchComponent(this.page.locator(SearchComponent.selector));
+    searchComponent = (): SearchComponent => new SearchComponent(this.findLctBySlt(SearchComponent.selector));
 
     async productItemComponentList(): Promise<ProductItemComponent[]> {
-        const productItemComponents = await this.page.locator(ProductItemComponent.selector).all();
-        return productItemComponents.map(comp => new ProductItemComponent(comp));
+        const productItemComponents = await this.findLctsBySlt(ProductItemComponent.selector);
+        return productItemComponents.map(comp => new ProductItemComponent(this.page, comp));
     };
 }

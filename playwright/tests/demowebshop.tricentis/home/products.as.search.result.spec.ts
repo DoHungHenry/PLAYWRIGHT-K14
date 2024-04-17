@@ -8,13 +8,14 @@ test('Test Products list as searching result in Page', async ({ page }) => {
     await page.goto('https://demowebshop.tricentis.com/');
     const homePage: HomePage = new HomePage(page);
     const searchComponent: SearchComponent = homePage.searchComponent();
+    await searchComponent.searchBoxLct().click();
+    await searchComponent.searchProduct('own');
+
     const productItemCompList: ProductItemComponent[] = await homePage.productItemComponentList();
 
-    await searchComponent.searchBoxLct().click();
-    await searchComponent.searchProduct('laptop');
     for (let productItemComponent of productItemCompList) {
-        const productTitle = await productItemComponent.productTitle().textContent();
-        const productPrice = await productItemComponent.productPrice().textContent();
+        const productTitle = await (productItemComponent.productTitle()).textContent();
+        const productPrice = await (productItemComponent.productPrice()).textContent();
         console.log(`${productTitle.trim()}: ${productPrice.trim()}`);
     };
 

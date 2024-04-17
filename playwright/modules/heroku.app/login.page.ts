@@ -7,9 +7,9 @@ export default class LoginPage extends BaseComponent {
         super(page);
     };
 
-    usernameLct = (): Locator => this.findLct('#username');
-    passwordLct = (): Locator => this.findLct('#password');
-    loginButtonLct = (): Locator => this.findLct('button[type="submit"]');
+    usernameLct = (): Locator => this.findLctBySlt('#username');
+    passwordLct = (): Locator => this.findLctBySlt('#password');
+    loginButtonLct = (): Locator => this.findLctBySlt('button[type="submit"]');
 
     inputUsername = async (username: string) => await this.fill(this.usernameLct(), username);
     inputPassword = async (password: string) => await this.fill(this.passwordLct(), password);
