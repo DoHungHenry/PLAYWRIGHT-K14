@@ -26,6 +26,9 @@ Creating 1 object representing Bank Count Number with below structure:
 ```
 */
 
+const readLine = require("readline-sync");
+
+
 let bankAc1 = {
     accountNumber: "123456",
     routingNumber: "10000",
@@ -38,14 +41,57 @@ let bankAc2 = {
     balance: 2000
 };
 
-let bankAccounts = [bankAC1, bankAC2];
+let bankAccounts = [bankAc1, bankAc2];
 
 let inputBankAcNum = 0;
 let inputAmount = 0;
+let isContinue = true;
+
 
 
 while (isContinue) {
     console.log("=== Banking application===");
-    console.log("1. Find an account");
-    
+    let selectedBankAc = getUserInputBankAc(bankAccounts);
+
+    let withdrawAmount = getUserInputAmount();
+
+    updateAccountBalance(selectedBankAc, withdrawAmount);
+
+    isContinue = getUserInputContinue();
 }
+
+function getUserInputBankAc(bankAccounts) {
+    console.log("Please input your account number: ");
+    const inputBankAcNum = readLine.question();
+    for (const bankAc of bankAccounts) {
+        if (bankAc.accountNumber === inputBankAcNum) {
+            console.log(`Account Number: ${bankAc.accountNumber}`);
+            console.log(`Balance: ${bankAc.balance}`);
+            return inputBankAcNum;
+        } else {
+            return null;
+        };
+    };
+};
+
+function getUserInputAmount() {
+    console.log('Please input your withdraw amount: ');
+    let withdrawAmount = readLine.question();
+    return Number(withdrawAmount);
+};
+
+function updateAccountBalance(bankAc, withdrawAmount) {
+    if (bankAc.balance >= withdrawAmount) {
+        bankAc.balance = bankAc.balance - withdrawAmount;
+        console.log(`Withdraw successfully. Your new balance is: ${bankAc.balance}`);
+        return bankAc;
+    } else {
+        console.log("Not enough money");
+    };
+};
+
+function getUserInputContinue() {
+    console.log('Do you want to continue? (1: Yes)');
+    let userInput = readLine.question();
+    return userInput === '1' ? true : false;
+};
