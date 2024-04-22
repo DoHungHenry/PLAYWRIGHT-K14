@@ -43,8 +43,6 @@ let bankAc2 = {
 
 let bankAccounts = [bankAc1, bankAc2];
 
-let inputBankAcNum = 0;
-let inputAmount = 0;
 let isContinue = true;
 
 
