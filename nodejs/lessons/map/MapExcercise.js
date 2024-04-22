@@ -1,6 +1,6 @@
 /* 
 Given string: 'Hello, my name is John, and my job is a developer, what your name, what your job'
-Create a map1:
+Use object to group words and count the number of words
 name: 2
 job: 2
 */
