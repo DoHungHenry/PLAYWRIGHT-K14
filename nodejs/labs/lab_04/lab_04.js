@@ -28,68 +28,74 @@ Creating 1 object representing Bank Count Number with below structure:
 
 const readLine = require("readline-sync");
 
-
 let bankAc1 = {
-    accountNumber: "123456",
-    routingNumber: "10000",
-    balance: 1000
+  accountNumber: "123",
+  routingNumber: "10000",
+  balance: 1000,
 };
 
 let bankAc2 = {
-    accountNumber: "9234567",
-    routingNumber: "20000",
-    balance: 2000
+  accountNumber: "456",
+  routingNumber: "20000",
+  balance: 2000,
 };
 
 let bankAccounts = [bankAc1, bankAc2];
 
 let isContinue = true;
 
-
-
 while (isContinue) {
-    console.log("=== Banking application===");
-    let selectedBankAc = getUserInputBankAc(bankAccounts);
+  printMenu();
+  let selectedBankAc = getUserInputBankAc(bankAccounts);
 
-    let withdrawAmount = getUserInputAmount();
+  let withdrawAmount = getUserInputAmount();
 
-    updateAccountBalance(selectedBankAc, withdrawAmount);
+  let updatedBankAc = updateAccountBalance(selectedBankAc, withdrawAmount);
 
-    isContinue = getUserInputContinue();
+  console.log(JSON.stringify(updatedBankAc));
+
+  isContinue = getUserInputContinue();
 }
 
 function getUserInputBankAc(bankAccounts) {
-    console.log("Please input your account number: ");
-    const inputBankAcNum = readLine.question();
-    for (const bankAc of bankAccounts) {
-        if (bankAc.accountNumber === inputBankAcNum) {
-            console.log(`Account Number: ${bankAc.accountNumber}`);
-            console.log(`Balance: ${bankAc.balance}`);
-            return inputBankAcNum;
-        } else {
-            return null;
-        };
-    };
-};
+  console.log("Please input your account number: ");
+  const inputBankAcNum = readLine.question();
+  for (const bankAc of bankAccounts) {
+    if (bankAc.accountNumber === inputBankAcNum) {
+      console.log(`Account Number: ${bankAc.accountNumber}`);
+      console.log(`Balance: ${bankAc.balance}`);
+      return inputBankAcNum;
+    } else {
+      return null;
+    }
+  }
+}
 
 function getUserInputAmount() {
-    console.log('Please input your withdraw amount: ');
-    let withdrawAmount = readLine.question();
-    return Number(withdrawAmount);
-};
+  console.log("Please input your withdraw amount: ");
+  let withdrawAmount = readLine.question();
+  console.log(`You have input: ${withdrawAmount}`);
+  return Number(withdrawAmount);
+}
 
-function updateAccountBalance(bankAc, withdrawAmount) {
-    if (bankAc.balance >= withdrawAmount) {
-        bankAc.balance = bankAc.balance - withdrawAmount;
-        console.log(`Withdraw successfully. Your new balance is: ${bankAc.balance}`);
-        return bankAc;
-    } else {
-        console.log("Not enough money");
-    };
-};
+function updateAccountBalance(selectedBankAc, withdrawAmount) {
+  if (selectedBankAc.balance >= withdrawAmount) {
+    selectedBankAc.balance = selectedBankAc.balance - withdrawAmount;
+    console.log(
+      `Withdraw successfully. Your new balance is: ${selectedBankAc.balance}`
+    );
+    return selectedBankAc;
+  } else {
+    console.log("Not enough money");
+  }
+}
 
 function getUserInputContinue() {
-    console.log('Do you want to continue? (1: Yes)');
-    let userInput = readLine.question();
-    return userInput === '1' ? true : false;
-};
+  console.log("Do you want to continue? (1: Yes)");
+  let userInput = readLine.question();
+  if (userInput === "1") {
+    return true;
+  } else {
+    throw new Error("Invalid user input");
+  }
+}

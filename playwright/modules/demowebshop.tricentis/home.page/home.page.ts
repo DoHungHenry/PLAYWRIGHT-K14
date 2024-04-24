@@ -1,7 +1,9 @@
 import { Page } from "@playwright/test";
-import { BasePage } from "../../base.pages/base.page";
-import { SearchComponent } from "../../demowebshop.tricentis/common.components/search.comp";
-import { ProductItemComponent } from "../common.components/product.item.comp";
+import { ProductItemComp } from "../common.components/product.item.card/product.item.comp";
+import { HeaderComp } from "../common.components/header/header.comp";
+import { BaseComponent } from "@modules/base.components/base.component";
+import { BasePage } from "@modules/base.pages/base.page";
+import { FooterComponent } from "../common.components/footer/footer.comp";
 
 export class HomePage extends BasePage {
 
@@ -9,10 +11,12 @@ export class HomePage extends BasePage {
         super(page);
     };
 
-    searchComponent = (): SearchComponent => new SearchComponent(this.findLctBySlt(SearchComponent.selector));
+    headerComp = (): HeaderComp => new HeaderComp(this.findLctBySlt(HeaderComp.compSlt));
 
-    async productItemComponentList(): Promise<ProductItemComponent[]> {
-        const productItemComponents = await this.findLctsBySlt(ProductItemComponent.selector);
-        return productItemComponents.map(comp => new ProductItemComponent(this.page, comp));
+    async ProductItemCompList(): Promise<ProductItemComp[]> {
+        const productItemComponents = await this.findLctsBySlt(ProductItemComp.compSlt);
+        return productItemComponents.map(compLct => new ProductItemComp(compLct));
     };
+
+    footerComp = (): FooterComponent => new FooterComponent(this.findLctBySlt(FooterComponent.compSlt));
 }
