@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { ProductItemComp } from "../common.components/product.item.card/product.item.comp";
 import { HeaderComp } from "../common.components/header/header.comp";
-import { BaseComponent } from "@modules/base.components/base.component";
 import { BasePage } from "@modules/base.pages/base.page";
 import { FooterComponent } from "../common.components/footer/footer.comp";
 

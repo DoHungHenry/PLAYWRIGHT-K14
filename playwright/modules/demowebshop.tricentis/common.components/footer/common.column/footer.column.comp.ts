@@ -1,11 +1,11 @@
 import { BaseComponent } from "@modules/base.components/base.component";
 import { Locator, Page } from "@playwright/test";
 
-export class FooterColumnComp extends BaseComponent {
+export abstract class FooterColumnComp extends BaseComponent {
 
     public static compSlt = '.footer';
 
-    constructor(private compLct: Locator) {
+    protected constructor(private compLct: Locator) {
         super(compLct.page());
         this.compLct = compLct;
         this.compLct.scrollIntoViewIfNeeded();
