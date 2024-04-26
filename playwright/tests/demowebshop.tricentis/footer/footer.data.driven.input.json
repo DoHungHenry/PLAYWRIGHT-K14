@@ -1,0 +1,10 @@
+[
+    {
+        "pageName": "Home Page",
+        "slug": "/"
+    },
+    {
+        "pageName": "Login Page",
+        "slug": "/login"
+    }
+]

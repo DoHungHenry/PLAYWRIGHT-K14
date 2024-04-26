@@ -1,4 +1,5 @@
 import { PlaywrightTestConfig, devices } from '@playwright/test';
+require('dotenv').config();
 
 const config: PlaywrightTestConfig = {
     testDir: 'tests',
