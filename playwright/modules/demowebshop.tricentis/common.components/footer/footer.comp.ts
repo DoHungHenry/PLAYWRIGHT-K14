@@ -1,9 +1,9 @@
 import { BaseComponent } from "@core/models/base.component";
 import { Locator, Page } from "@playwright/test";
-import { InfoColumnComp } from "./info.column/info.column.comp";
-import { FollowUsColumnComp } from "./follow.us.column/follow.us.column.comp";
-import { CustomerServiceColumnComp } from "./customer.service.column/customer.service.comp";
-import { MyAccountColumnComp } from "./my.account.column/my.account.column.comp";
+import { InfoColumnComp } from "./child.column/info.column.comp";
+import { FollowUsColumnComp } from "./child.column/follow.us.column.comp";
+import { CustomerServiceColumnComp } from "./child.column/customer.service.comp";
+import { MyAccountColumnComp } from "./child.column/my.account.column.comp";
 
 export class FooterComponent extends BaseComponent {
 
