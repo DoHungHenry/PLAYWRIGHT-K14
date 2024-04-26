@@ -1,4 +1,4 @@
-import { BasePage } from "@modules/base.pages/base.page";
+import { BasePage } from "@core/models/base.page";
 import { FooterColumnComp } from "@modules/demowebshop.tricentis/common.components/footer/common.column/footer.column.comp";
 import { HomePage } from "@modules/demowebshop.tricentis/home.page/home.page";
 import { Page } from "@playwright/test";
@@ -67,8 +67,8 @@ export class FooterFlows extends BasePage {
     };
 
     private async verifyFooterColumn(
-        footerColumnComp: FooterColumnComp, 
-        expectedLinkTexts: string[], 
+        footerColumnComp: FooterColumnComp,
+        expectedLinkTexts: string[],
         expectedLinks: string[]
     ): Promise<void> {
         let actualLinkTexts: string[] = [];
@@ -92,5 +92,5 @@ export class FooterFlows extends BasePage {
 
         this.page.waitForTimeout(2000);
     };
-        
+
 }

@@ -2,7 +2,7 @@ import { Locator, Page } from "@playwright/test";
 import { LinkComp } from "./link/link.comp";
 import { LogoComp } from "./logo/logo.comp";
 import { SearchComp } from "./search/search.comp";
-import { BaseComponent } from "@modules/base.components/base.component";
+import { BaseComponent } from "@core/models/base.component";
 
 export class HeaderComp extends BaseComponent {
 

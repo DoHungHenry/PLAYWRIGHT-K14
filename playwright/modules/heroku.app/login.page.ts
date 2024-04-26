@@ -1,5 +1,5 @@
 import { Locator, Page } from "@playwright/test";
-import { BaseComponent } from "modules/base.components/base.component";
+import { BaseComponent } from "@core/models/base.component";
 
 export default class LoginPage extends BaseComponent {
 
