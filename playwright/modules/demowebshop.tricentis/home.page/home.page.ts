@@ -1,8 +1,7 @@
+import { BasePage } from "@core/models";
 import { Page } from "@playwright/test";
-import { ProductItemComp } from "../common.components/product.item.card/product.item.comp";
-import { HeaderComp } from "../common.components/header/header.comp";
-import { BasePage } from "@core/models/base.page";
-import { FooterComponent } from "../common.components/footer/footer.comp";
+import { FooterComponent, HeaderComp, ProductItemComp } from "../common.components";
+
 
 export class HomePage extends BasePage {
 

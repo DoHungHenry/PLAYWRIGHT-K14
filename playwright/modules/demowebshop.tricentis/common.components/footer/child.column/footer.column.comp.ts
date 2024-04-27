@@ -1,5 +1,5 @@
 import { BaseComponent } from "@core/models/base.component";
-import { Locator, Page } from "@playwright/test";
+import { Locator } from "@playwright/test";
 
 export abstract class FooterColumnComp extends BaseComponent {
 

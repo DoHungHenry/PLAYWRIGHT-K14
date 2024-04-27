@@ -1,5 +1,5 @@
+import { FooterFlows } from '@modules/demowebshop.tricentis';
 import { Page, test } from '@playwright/test';
-import { FooterFlows } from 'test.flows/global/footer.flows';
 
 let page: Page;
 let footerFlows: FooterFlows;

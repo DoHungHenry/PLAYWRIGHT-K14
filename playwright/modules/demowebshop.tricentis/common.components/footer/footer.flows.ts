@@ -1,8 +1,8 @@
-import { BasePage } from "@core/models/base.page";
-import { FooterColumnComp } from "@modules/demowebshop.tricentis/common.components/footer/common.column/footer.column.comp";
-import { HomePage } from "@modules/demowebshop.tricentis/home.page/home.page";
+import { BasePage } from "@core/models";
+import { FooterColumnComp, HomePage } from "@modules/demowebshop.tricentis";
 import { Page } from "@playwright/test";
 import assert from "assert";
+
 
 export class FooterFlows extends BasePage {
 

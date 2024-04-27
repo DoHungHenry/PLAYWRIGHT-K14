@@ -1,5 +1,5 @@
-import { BaseComponent } from "@core/models/base.component";
-import { Locator, Page } from "@playwright/test";
+import { BaseComponent } from "@core/models";
+import { Locator } from "@playwright/test";
 
 export class ProductItemComp extends BaseComponent {
 

@@ -1,5 +1,5 @@
 import { BaseComponent } from "@core/models/base.component";
-import { Locator, Page } from "@playwright/test";
+import { Locator } from "@playwright/test";
 import { InfoColumnComp } from "./child.column/info.column.comp";
 import { FollowUsColumnComp } from "./child.column/follow.us.column.comp";
 import { CustomerServiceColumnComp } from "./child.column/customer.service.comp";

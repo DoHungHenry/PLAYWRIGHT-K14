@@ -6,8 +6,9 @@
     "paths": {
       "@core/*": ["core/*"],
       "@modules/*": ["modules/*"],
-      "@utilities/*": ["utilities/*"],
+      "@utilities/*": ["utilities/*"]
     },
-    "lib": ["ES2023", "DOM"]
+    "lib": ["ES2023", "DOM"],
+    "experimentalDecorators": true
   }
 }

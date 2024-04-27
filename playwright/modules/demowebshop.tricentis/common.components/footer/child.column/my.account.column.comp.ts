@@ -1,5 +1,5 @@
 import { Locator } from "@playwright/test";
-import { FooterColumnComp } from "../common.column/footer.column.comp";
+import { FooterColumnComp } from "./footer.column.comp";
 
 export class MyAccountColumnComp extends FooterColumnComp {
 

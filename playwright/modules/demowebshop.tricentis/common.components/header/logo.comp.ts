@@ -1,4 +1,4 @@
-import { BaseComponent } from "@core/models/base.component";
+import { BaseComponent } from "@core/models";
 import { Locator } from "@playwright/test";
 
 export class LogoComp extends BaseComponent {

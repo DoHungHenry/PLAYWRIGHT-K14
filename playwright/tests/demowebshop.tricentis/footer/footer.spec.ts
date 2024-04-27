@@ -1,4 +1,4 @@
-import { HomePage } from '@modules/demowebshop.tricentis/home.page/home.page';
+import { HomePage } from '@modules/demowebshop.tricentis';
 import { expect, Page, test } from '@playwright/test';
 
 let page: Page;
