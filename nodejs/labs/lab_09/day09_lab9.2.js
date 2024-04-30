@@ -21,21 +21,21 @@ getUserByUserIdAndPostId(userId, postId);
 getUsersByUserId(userId);
 
 async function getUserByUserIdAndPostId(userId, postId) {
-  const resBody = sendRequest(url);
+  const resBody = await sendRequest(url);
   let users = filterUsersByUserId(resBody, userId);
   let user = filterUsersByPostId(users, postId);
   console.log(
     `this is user by userID and id: ${JSON.stringify(user, null, 2)}`
   );
   return user;
-};
+}
 
 async function getUsersByUserId(userId) {
-  const resBody = sendRequest(url);
+  const resBody = await sendRequest(url);
   let users = filterUsersByUserId(resBody, userId);
   console.log(`this is users by userID: ${JSON.stringify(users, null, 2)}`);
   return users;
-};
+}
 
 function filterUsersByPostId(data, postId) {
   let users = [];
@@ -45,7 +45,7 @@ function filterUsersByPostId(data, postId) {
     }
   });
   return users;
-};
+}
 
 function filterUsersByUserId(data, userId) {
   let users = [];
@@ -55,12 +55,12 @@ function filterUsersByUserId(data, userId) {
     }
   });
   return users;
-};
+}
 
 function getUserIdFromUserInput() {
   return Number(readLine.question("Please input userId: "));
-};
+}
 
 function getPostIdFromUserInput() {
   return Number(readLine.question("Please input postId: "));
-};
+}
