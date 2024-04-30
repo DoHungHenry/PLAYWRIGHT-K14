@@ -23,49 +23,53 @@ let userId = getUserIdFromUserInput();
 
 let postId = getPostIdFromUserInput();
 
-getUsersByUserId(postId);
+console.log(`userId: ${userId}, postId: ${postId}`);
 
 getUserByUserIdAndPostId(userId, postId);
 
+getUsersByUserId(userId);
+
 function getUserByUserIdAndPostId(userId, postId) {
-  const res = fetch(url)
+  fetch(url)
     .then((response) => response.json())
     .then((data) => {
       let users = filterUsersByUserId(data, userId);
       let user = filterUsersByPostId(users, postId);
-      console.log(JSON.stringify(user, null, 2));
+      console.log(
+        `this is user by userID and id: ${JSON.stringify(user, null, 2)}`
+      );
       return user;
     });
 }
 
 function getUsersByUserId(userId) {
-  const res = fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
       let users = filterUsersByUserId(data, userId);
-      console.log(JSON.stringify(users, null, 2));
+      console.log(`this is users by userID: ${JSON.stringify(users, null, 2)}`);
       return users;
     });
 }
 
 function filterUsersByPostId(data, postId) {
-  let posts = [];
+  let users = [];
   data.forEach((post) => {
     if (post.id === postId) {
-      posts.push(post);
+      users.push(post);
     }
   });
-  return posts;
+  return users;
 }
 
 function filterUsersByUserId(data, userId) {
-  let posts = [];
+  let users = [];
   data.forEach((post) => {
     if (post.userId === userId) {
-      posts.push(post);
+      users.push(post);
     }
   });
-  return posts;
+  return users;
 }
 
 function getUserIdFromUserInput() {
