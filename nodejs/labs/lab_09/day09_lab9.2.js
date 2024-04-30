@@ -25,7 +25,7 @@ async function getUserByUserIdAndPostId(userId, postId) {
   let users = filterUsersByUserId(resBody, userId);
   let user = filterUsersByPostId(users, postId);
   console.log(
-    `this is user by userID and id: ${JSON.stringify(user, null, 2)}`
+    `this is user by userID and postId: ${JSON.stringify(user, null, 2)}`
   );
   return user;
 }
@@ -38,23 +38,11 @@ async function getUsersByUserId(userId) {
 }
 
 function filterUsersByPostId(data, postId) {
-  let users = [];
-  data.forEach((user) => {
-    if (user.id === postId) {
-      users.push(user);
-    };
-  });
-  return users;
+  return data.filter((user) => user.id === postId);
 }
 
 function filterUsersByUserId(data, userId) {
-  let users = [];
-  data.forEach((user) => {
-    if (user.userId === userId) {
-      users.push(user);
-    };
-  });
-  return users;
+  return data.filter((user) => user.userId === userId);
 }
 
 function getUserIdFromUserInput() {
