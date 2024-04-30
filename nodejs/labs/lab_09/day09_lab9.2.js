@@ -42,9 +42,7 @@ function filterUsersByPostId(data, postId) {
   data.forEach((user) => {
     if (user.id === postId) {
       users.push(user);
-    } else {
-      throw new Error("PostId not found");
-    }
+    };
   });
   return users;
 }
@@ -54,17 +52,18 @@ function filterUsersByUserId(data, userId) {
   data.forEach((user) => {
     if (user.userId === userId) {
       users.push(user);
-    } else {
-      throw new Error("UserId not found");
-    }
+    };
   });
   return users;
 }
 
 function getUserIdFromUserInput() {
-  return Number(readLine.question("Please input userId: "));
+  let userId = readLine.question("Please input userId: ");
+  return isNaN(userId) ? (console.log("Please input a number"), getUserIdFromUserInput()) : Number(userId);
 }
 
 function getPostIdFromUserInput() {
-  return Number(readLine.question("Please input postId: "));
+  // return Number(readLine.question("Please input postId: "));
+  let postId = readLine.question("Please input postId: ");
+  return isNaN(postId) ? (console.log("Please input a number"), getPostIdFromUserInput()) : Number(postId);
 }
