@@ -10,12 +10,10 @@ export class CheapComputerComp extends ComputerEssentialComp {
     };
 
     selectProcessorType(type: string): Promise<void> {
-        console.log("this is selectProcessorType method from CheapComputerComp class");
         return Promise.resolve(undefined);
     };
 
     selectRAMType(type: string): Promise<void> {
-        console.log("this is selectRAMType method from CheapComputerComp class");
         return Promise.resolve(undefined);
     };
 }

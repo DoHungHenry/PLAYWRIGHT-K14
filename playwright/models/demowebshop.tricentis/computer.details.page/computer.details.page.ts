@@ -17,16 +17,15 @@ export class ComputerDetailsPage extends BasePage {
         super(page);
     };
 
-
     /* 
     - Boundary Generic type: <Teo extends ComputerEssentialComp>
-    - Purpose of this computerComp method is to get compSlt value from Teo class (Teo is a ComputerEssentialComp) 
+    - Purpose of this computerComp method is to get compSlt value from Teo class (Teo is a ComputerEssentialComp)
     that is a ComputerEssentialComp type (only concrete class of ComputerEssentialComp because ComputerEssentialComp is abstract class)
     */
     computerComp<Teo extends ComputerEssentialComp>(
         computerCompClass: ComputerCompConstructor<Teo>
     ): Teo {
         console.log(computerCompClass.selectorValue);
-        return new computerCompClass(this.page.locator(''));
+        return new computerCompClass(this.page.locator(computerCompClass.selectorValue));
     };
 }

@@ -6,6 +6,7 @@
 */
 
 const readLine = require("readline-sync");
+const { sendRequest } = require("../../utils/api.helper");
 
 const url = "https://jsonplaceholder.typicode.com/posts";
 
@@ -20,46 +21,46 @@ getUserByUserIdAndPostId(userId, postId);
 getUsersByUserId(userId);
 
 async function getUserByUserIdAndPostId(userId, postId) {
-    const resBody = await (await fetch(url)).json();
-    let users = filterUsersByUserId(resBody, userId);
-    let user = filterUsersByPostId(users, postId);
-    console.log(
-      `this is user by userID and id: ${JSON.stringify(user, null, 2)}`
-    );
-    return user;
-}
+  const resBody = sendRequest(url);
+  let users = filterUsersByUserId(resBody, userId);
+  let user = filterUsersByPostId(users, postId);
+  console.log(
+    `this is user by userID and id: ${JSON.stringify(user, null, 2)}`
+  );
+  return user;
+};
 
 async function getUsersByUserId(userId) {
-    const resBody = await (await fetch(url)).json();
-    let users = filterUsersByUserId(resBody, userId);
-    console.log(`this is users by userID: ${JSON.stringify(users, null, 2)}`);
-    return users;
-}
+  const resBody = sendRequest(url);
+  let users = filterUsersByUserId(resBody, userId);
+  console.log(`this is users by userID: ${JSON.stringify(users, null, 2)}`);
+  return users;
+};
 
 function filterUsersByPostId(data, postId) {
   let users = [];
-  data.forEach((post) => {
-    if (post.id === postId) {
-      users.push(post);
+  data.forEach((user) => {
+    if (user.id === postId) {
+      users.push(user);
     }
   });
   return users;
-}
+};
 
 function filterUsersByUserId(data, userId) {
   let users = [];
-  data.forEach((post) => {
-    if (post.userId === userId) {
-      users.push(post);
+  data.forEach((user) => {
+    if (user.userId === userId) {
+      users.push(user);
     }
   });
   return users;
-}
+};
 
 function getUserIdFromUserInput() {
   return Number(readLine.question("Please input userId: "));
-}
+};
 
 function getPostIdFromUserInput() {
   return Number(readLine.question("Please input postId: "));
-}
+};

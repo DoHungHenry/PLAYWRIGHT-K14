@@ -30,52 +30,60 @@ getUserByUserIdAndPostId(userId, postId);
 getUsersByUserId(userId);
 
 function getUserByUserIdAndPostId(userId, postId) {
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-      let users = filterUsersByUserId(data, userId);
-      let user = filterUsersByPostId(users, postId);
-      console.log(
-        `this is user by userID and id: ${JSON.stringify(user, null, 2)}`
-      );
-      return user;
-    });
-}
+  try {
+    fetch(url)
+      .then((response) => response.json())
+      .then((resBody) => {
+        let users = filterUsersByUserId(resBody, userId);
+        let user = filterUsersByPostId(users, postId);
+        console.log(
+          `this is user by userID and id: ${JSON.stringify(user, null, 2)}`
+        );
+        return user;
+      });
+  } catch {
+    throw new Error("Something went wrong");
+  }
+};
 
 function getUsersByUserId(userId) {
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      let users = filterUsersByUserId(data, userId);
+  try {
+    fetch(url)
+    .then((response) => response.json())
+    .then((resBody) => {
+      let users = filterUsersByUserId(resBody, userId);
       console.log(`this is users by userID: ${JSON.stringify(users, null, 2)}`);
       return users;
     });
-}
+  } catch {
+    throw new Error("Something went wrong");
+  }
+};
 
 function filterUsersByPostId(data, postId) {
   let users = [];
-  data.forEach((post) => {
-    if (post.id === postId) {
-      users.push(post);
+  data.forEach(user => {
+    if (user.id === postId) {
+      users.push(user);
     }
   });
   return users;
-}
+};
 
 function filterUsersByUserId(data, userId) {
   let users = [];
-  data.forEach((post) => {
-    if (post.userId === userId) {
-      users.push(post);
+  data.forEach(user => {
+    if (user.userId === userId) {
+      users.push(user);
     }
   });
   return users;
-}
+};
 
 function getUserIdFromUserInput() {
   return Number(readLine.question("Please input userId: "));
-}
+};
 
 function getPostIdFromUserInput() {
   return Number(readLine.question("Please input postId: "));
-}
+};

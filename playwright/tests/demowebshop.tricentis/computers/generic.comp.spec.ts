@@ -4,7 +4,7 @@ import {
     ComputerDetailsPage,
     ComputerEssentialComp,
     StandardComputerComp
-} from '@modules/demowebshop.tricentis';
+} from 'models/demowebshop.tricentis';
 import { Page, test } from '@playwright/test';
 
 let page: Page;

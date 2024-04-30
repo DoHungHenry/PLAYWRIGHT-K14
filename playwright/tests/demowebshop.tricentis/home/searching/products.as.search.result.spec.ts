@@ -1,4 +1,4 @@
-import { HomePage, ProductItemComp, SearchComp } from '@modules/demowebshop.tricentis';
+import { HomePage, ProductItemComp, SearchComp } from 'models/demowebshop.tricentis';
 import { test } from '@playwright/test';
 
 

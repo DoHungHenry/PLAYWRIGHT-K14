@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import LoginPage from '@modules/heroku.app/login.page';
+import LoginPage from 'models/heroku.app/login.page';
 
 test('Traditional page object model', async ({ page }) => {
     const loginPage: LoginPage = new LoginPage(page);

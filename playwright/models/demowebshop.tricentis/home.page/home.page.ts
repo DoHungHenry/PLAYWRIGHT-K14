@@ -1,6 +1,7 @@
 import { BasePage } from "@core/models";
 import { Page } from "@playwright/test";
 import { FooterComponent, HeaderComp, ProductItemComp } from "../common.components";
+import { FooterComponent2 } from "../common.components/footer.generic";
 
 
 export class HomePage extends BasePage {
@@ -17,4 +18,6 @@ export class HomePage extends BasePage {
     };
 
     footerComp = (): FooterComponent => new FooterComponent(this.findLctBySlt(FooterComponent.compSlt));
+
+    footerGenericComp = (): FooterComponent2 => new FooterComponent2(this.findLctBySlt(FooterComponent2.compSlt));
 }

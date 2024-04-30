@@ -1,4 +1,4 @@
-import { HomePage, SearchComp } from '@modules/demowebshop.tricentis';
+import { HomePage, SearchComp } from 'models/demowebshop.tricentis';
 import { expect, Page, test } from '@playwright/test';
 
 let page: Page;

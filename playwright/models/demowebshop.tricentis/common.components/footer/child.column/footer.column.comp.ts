@@ -3,8 +3,6 @@ import { Locator } from "@playwright/test";
 
 export abstract class FooterColumnComp extends BaseComponent {
 
-    public static compSlt = '.footer';
-
     protected constructor(private compLct: Locator) {
         super(compLct.page());
         this.compLct = compLct;

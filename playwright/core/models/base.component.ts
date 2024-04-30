@@ -14,6 +14,33 @@ export class BaseComponent {
         hasText?: string | RegExp;
     }): Locator => this.page.locator(selector, options) ?? null;
 
+    // designed by mentor HuynhTung
+    protected async findLocator(
+        value: string,
+        options?: {
+            frame?: string;
+            tabId?: number;
+            timeOut?: number;
+            has?: Locator;
+            hasText?: string;
+        },
+    ): Promise<Locator> {
+        // improve this window concept
+        if (options?.tabId) {
+            this.page = this.page.context().pages()[options.tabId];
+        }
+        if (options?.frame) {
+            return this.page.frameLocator(options.frame).locator(value, {
+                has: options?.has,
+                hasText: options?.hasText,
+            });
+        }
+        return this.page.locator(value, {
+            has: options?.has,
+            hasText: options?.hasText,
+        });
+    };
+
     protected findLctsBySlt = async (selector: string, options?: {
         has?: Locator;
         hasNot?: Locator;

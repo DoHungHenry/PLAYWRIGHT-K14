@@ -1,5 +1,5 @@
 import { BasePage } from "@core/models";
-import { FooterColumnComp, HomePage } from "@modules/demowebshop.tricentis";
+import { FooterColumnComp, HomePage } from "models/demowebshop.tricentis";
 import { Page } from "@playwright/test";
 import assert from "assert";
 
