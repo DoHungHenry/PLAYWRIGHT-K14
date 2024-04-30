@@ -42,6 +42,8 @@ function filterUsersByPostId(data, postId) {
   data.forEach((user) => {
     if (user.id === postId) {
       users.push(user);
+    } else {
+      throw new Error("PostId not found");
     }
   });
   return users;
@@ -52,6 +54,8 @@ function filterUsersByUserId(data, userId) {
   data.forEach((user) => {
     if (user.userId === userId) {
       users.push(user);
+    } else {
+      throw new Error("UserId not found");
     }
   });
   return users;
