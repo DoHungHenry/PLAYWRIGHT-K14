@@ -1,7 +1,7 @@
 /* 
 ## 9.2
 * Please using PROMISE and ASYNC/AWAIT to solve this
-* Allow user to input an userid and postId, print out that post content
+* Allow user to input an userid and id, print out that post content
 * Print all posts for that user
 */
 
@@ -12,20 +12,20 @@ const url = "https://jsonplaceholder.typicode.com/posts";
 
 let userId = getUserIdFromUserInput();
 
-let postId = getPostIdFromUserInput();
+let id = getIdFromUserInput();
 
-console.log(`userId: ${userId}, postId: ${postId}`);
+console.log(`userId: ${userId}, id: ${id}`);
 
-getUserByUserIdAndPostId(userId, postId);
+getUserByUserIdAndId(userId, id);
 
 getUsersByUserId(userId);
 
-async function getUserByUserIdAndPostId(userId, postId) {
+async function getUserByUserIdAndId(userId, id) {
   const resBody = await sendRequest(url);
   let users = filterUsersByUserId(resBody, userId);
-  let user = filterUsersByPostId(users, postId);
+  let user = filterUsersById(users, id);
   console.log(
-    `this is user by userID and postId: ${JSON.stringify(user, null, 2)}`
+    `this is user by userID and id: ${JSON.stringify(user, null, 2)}`
   );
   return user;
 }
@@ -37,8 +37,8 @@ async function getUsersByUserId(userId) {
   return users;
 }
 
-function filterUsersByPostId(data, postId) {
-  return data.filter((user) => user.id === postId);
+function filterUsersById(data, id) {
+  return data.filter((user) => user.id === id);
 }
 
 function filterUsersByUserId(data, userId) {
@@ -47,11 +47,15 @@ function filterUsersByUserId(data, userId) {
 
 function getUserIdFromUserInput() {
   let userId = readLine.question("Please input userId: ");
-  return isNaN(userId) ? (console.log("Please input a number"), getUserIdFromUserInput()) : Number(userId);
+  return isNaN(userId)
+    ? (console.log("Please input a number"), getUserIdFromUserInput())
+    : Number(userId);
 }
 
-function getPostIdFromUserInput() {
-  // return Number(readLine.question("Please input postId: "));
-  let postId = readLine.question("Please input postId: ");
-  return isNaN(postId) ? (console.log("Please input a number"), getPostIdFromUserInput()) : Number(postId);
+function getIdFromUserInput() {
+  // return Number(readLine.question("Please input id: "));
+  let id = readLine.question("Please input id: ");
+  return isNaN(id)
+    ? (console.log("Please input a number"), getIdFromUserInput())
+    : Number(id);
 }

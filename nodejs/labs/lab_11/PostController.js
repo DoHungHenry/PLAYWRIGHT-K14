@@ -3,16 +3,21 @@ const readLine = require("readline-sync");
 const { sendRequest } = require("../../utils/api.helper");
 
 class PostController {
-    
-  async getUserByUserIdAndPostId(url, userId, postId) {
+  async getUserByUserIdAndId(url, userId, id) {
     const resBody = await sendRequest(url);
     let usersByUserId = this._filterUsersByUserId(resBody, userId);
-    let usersByUserIdAndPostId = this._filterUsersByPostId(usersByUserId, postId);
+    let usersByUserIdAndId = this._filterUsersById(usersByUserId, id);
     console.log(
-      `this is user by userID and postId: ${JSON.stringify(usersByUserIdAndPostId, null, 2)}`
+      `this is user by userID and id: ${JSON.stringify(
+        usersByUserIdAndId,
+        null,
+        2
+      )}`
     );
-    return usersByUserIdAndPostId.map(user => new Post(user.userId, user.id, user.title, user.body));
-  };
+    return usersByUserIdAndId.map(
+      (user) => new Post(user.userId, user.id, user.title, user.body)
+    );
+  }
 
   async getUsersByUserId(url, userId) {
     const resBody = await sendRequest(url);
@@ -21,29 +26,29 @@ class PostController {
     return users.map(
       (user) => new Post(user.userId, user.id, user.title, user.body)
     );
-  };
+  }
 
   getUserIdFromUserInput() {
     let userId = readLine.question("Please input userId: ");
     return isNaN(userId)
       ? (console.log("Please input a number"), getUserIdFromUserInput())
       : Number(userId);
-  };
+  }
 
-  getPostIdFromUserInput() {
-    let postId = readLine.question("Please input postId: ");
-    return isNaN(postId)
-      ? (console.log("Please input a number"), getPostIdFromUserInput())
-      : Number(postId);
-  };
+  getIdFromUserInput() {
+    let id = readLine.question("Please input id: ");
+    return isNaN(id)
+      ? (console.log("Please input a number"), getIdFromUserInput())
+      : Number(id);
+  }
 
-  _filterUsersByPostId(data, postId) {
-    return data.filter((user) => user.id === postId);
-  };
+  _filterUsersById(data, id) {
+    return data.filter((user) => user.id === id);
+  }
 
   _filterUsersByUserId(data, userId) {
     return data.filter((user) => user.userId === userId);
-  };
+  }
 }
 
 module.exports = PostController;

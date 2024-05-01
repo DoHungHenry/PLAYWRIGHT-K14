@@ -21,21 +21,21 @@ const url = "https://jsonplaceholder.typicode.com/posts";
 
 let userId = getUserIdFromUserInput();
 
-let postId = getPostIdFromUserInput();
+let id = getIdFromUserInput();
 
-console.log(`userId: ${userId}, postId: ${postId}`);
+console.log(`userId: ${userId}, id: ${id}`);
 
-getUserByUserIdAndPostId(userId, postId);
+getUserByUserIdAndId(userId, id);
 
 getUsersByUserId(userId);
 
-function getUserByUserIdAndPostId(userId, postId) {
+function getUserByUserIdAndId(userId, id) {
   try {
     fetch(url)
       .then((response) => response.json())
       .then((resBody) => {
         let users = filterUsersByUserId(resBody, userId);
-        let user = filterUsersByPostId(users, postId);
+        let user = filterUsersById(users, id);
         console.log(
           `this is user by userID and id: ${JSON.stringify(user, null, 2)}`
         );
@@ -62,8 +62,8 @@ function getUsersByUserId(userId) {
   }
 }
 
-function filterUsersByPostId(data, postId) {
-  return data.filter((user) => user.id === postId);
+function filterUsersById(data, id) {
+  return data.filter((user) => user.id === id);
 }
 
 function filterUsersByUserId(data, userId) {
@@ -74,6 +74,6 @@ function getUserIdFromUserInput() {
   return Number(readLine.question("Please input userId: "));
 }
 
-function getPostIdFromUserInput() {
-  return Number(readLine.question("Please input postId: "));
+function getIdFromUserInput() {
+  return Number(readLine.question("Please input id: "));
 }

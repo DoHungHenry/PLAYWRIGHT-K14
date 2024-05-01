@@ -6,10 +6,10 @@ const postController = new PostController();
 
 let userId = postController.getUserIdFromUserInput();
 
-let postId = postController.getPostIdFromUserInput();
+let id = postController.getIdFromUserInput();
 
-console.log(`userId: ${userId}, postId: ${postId}`);
+console.log(`userId: ${userId}, id: ${id}`);
 
-postController.getUserByUserIdAndPostId(url, userId, postId);
+postController.getUserByUserIdAndId(url, userId, id);
 
 postController.getUsersByUserId(url, userId);
