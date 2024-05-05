@@ -9,17 +9,9 @@ class Robot {
         return Robot.id;
     };
 
-    setId(id) {
-        Robot.id = id;
+    static doSomething() {
+        return 'Doing something';
     };
 }
 
 module.exports = Robot;
-
-
-const robot1 = new Robot();
-console.log(robot1.getId()); // 1
-
-const robot2 = new Robot();
-console.log(robot1.getId()); // 2
-console.log(robot2.getId()); // 2
