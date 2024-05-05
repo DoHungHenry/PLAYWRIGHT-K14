@@ -1,10 +1,8 @@
 const { randomSpeed } = require("../../utils/NumberHelper");
 
 class Animal {
-    constructor(name, maxSpeed) {
+    constructor(name) {
         this._name = name;
-        this.maxSpeed = maxSpeed;
-        this._speed = this._getSpeed(this.maxSpeed);
     };
 
     get name() {
@@ -15,7 +13,7 @@ class Animal {
         return this._speed;
     };
 
-    _getSpeed() {
+    getSpeed() {
         return randomSpeed(this.maxSpeed);
     };
 }
