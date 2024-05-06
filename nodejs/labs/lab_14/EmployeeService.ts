@@ -32,11 +32,19 @@ export class EmployeeService {
         return employees.sort((a, b) => a.getSalary() - b.getSalary());
     };
 
-    static sortEmployeesBySalaryLodash(employees: Employee[]): Employee[] {
-        return _.sortBy(employees, ['salary']);
+    static sortEmployeesBySalaryLodashAsn(employees: Employee[]): Employee[] {
+        return _.orderBy(employees, ['salary'], ['asc']);
     };
 
-    static sortEmployeesByName(employees: Employee[]): Employee[] {
-        return employees.sort((a, b) => a.getName().localeCompare(b.getName()));
+    static sortEmployeesBySalaryLodashDesc(employees: Employee[]): Employee[] {
+        return _.orderBy(employees, ['salary'], ['desc']);
+    };
+
+    static sortEmployeesByNameAtoZ(employees: Employee[]): Employee[] {
+        return _.orderBy(employees, ['name'], ['asc']);
+    };
+
+    static sortEmployeesByNameZtoA(employees: Employee[]): Employee[] {
+        return _.orderBy(employees, ['name'], ['desc']);
     };
 }
