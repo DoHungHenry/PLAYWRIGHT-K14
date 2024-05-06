@@ -4,7 +4,7 @@ import { FooterComponent, HeaderComp, ProductItemComp } from "../common.componen
 import { FooterComponent2 } from "../common.components/footer.generic";
 
 
-export class HomePage extends BasePage {
+    export class HomePage extends BasePage {
 
     constructor(page: Page) {
         super(page);

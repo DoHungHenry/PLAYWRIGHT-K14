@@ -1,3 +1,5 @@
+const RobotCat = require("./RobotCat");
+
 class Charger {
 
     // IS-A RobotCat
@@ -5,7 +7,7 @@ class Charger {
         robotCatList.forEach(robotCat => {
             console.log(robotCat.charge());
         });
-    }
+    };
 }
 
 module.exports = Charger;
