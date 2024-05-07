@@ -4,7 +4,7 @@ class Tiger extends Animal {
     constructor(name){
         super(name);
         this.maxSpeed = 100;
-        this._speed = this.getSpeed(this.maxSpeed);
+        this._speed = this.speed(this.maxSpeed);
     };
 }
 

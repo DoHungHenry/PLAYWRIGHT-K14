@@ -1,5 +1,5 @@
 import { Employee } from "./Employee";
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 export class EmployeeService {
     static totalSalary(employees: Employee[]): number {

@@ -1,4 +1,4 @@
-const { randomSpeed } = require("../../utils/NumberHelper");
+const { randomSpeed } = require("../../../utils/NumberHelper");
 
 class Animal {
     constructor(name) {
@@ -13,7 +13,7 @@ class Animal {
         return this._speed;
     };
 
-    getSpeed() {
+    speed() {
         return randomSpeed(this.maxSpeed);
     };
 }
