@@ -15,4 +15,9 @@ const tiger2 = new Tiger("Leo");
 const animals = [dog1, dog2, horse1, horse2, tiger1, tiger2];
 
 console.log(JSON.stringify(animals, null, 2));
-console.log(AnimalService.getWinner(animals));
+
+const winners = AnimalService.getWinner(animals);
+
+for(const winner of winners) {
+    console.log(`The winner animal in racing contest is ${winner.getName()} with a speed of ${winner.getSpeed()}!`);
+}

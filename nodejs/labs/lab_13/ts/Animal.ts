@@ -7,6 +7,10 @@ export class Animal {
         this.speed = 0;
     };
 
+    getName(): string {
+        return this.name;
+    };
+
     getSpeed(): number {
         return this.speed;
     };
