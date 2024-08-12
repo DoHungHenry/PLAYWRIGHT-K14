@@ -6,7 +6,8 @@
     "paths": {
       "@core/*": ["core/*"],
       "@modules/*": ["models/*"],
-      "@utilities/*": ["utilities/*"]
+      "@utilities/*": ["utilities/*"],
+      "@demowebshop.tricentis/*": ["demowebshop.tricentis/*"]
     },
     "lib": ["ES2023", "DOM"],
     "experimentalDecorators": true

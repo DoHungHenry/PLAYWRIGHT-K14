@@ -18,7 +18,7 @@ const tiger1 = new tiger('Tiger1');
 const tiger2 = new tiger('Tiger2');
 
 const animals = [horse1, horse2, dog1, dog2, tiger1, tiger2];
-console.log(JSON.stringify(animals, null, 2));
+console.log(JSON.stringify(animals));
 
 const fastestAnimals = RacingController.racing(animals);
 

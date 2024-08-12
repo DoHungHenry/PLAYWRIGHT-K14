@@ -14,7 +14,7 @@ const tiger2 = new Tiger("Leo");
 
 const animals = [dog1, dog2, horse1, horse2, tiger1, tiger2];
 
-console.log(JSON.stringify(animals, null, 2));
+console.log(JSON.stringify(animals));
 
 const winners = AnimalService.getWinner(animals);
 
