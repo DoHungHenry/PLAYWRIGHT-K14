@@ -3,10 +3,10 @@ import { Locator } from "@playwright/test";
 
 export class LogoComp extends BasePage {
 
-    public static compSlt = '.header-logo';
+    public static componentSelector = '.header-logo';
 
-    constructor(private compLct: Locator) {
-        super(compLct.page());
-        this.compLct = compLct;
+    constructor(private componentLocator: Locator) {
+        super(componentLocator.page());
+        this.componentLocator = componentLocator;
     };
 }

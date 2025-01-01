@@ -3,9 +3,9 @@ import { FooterColumnComp } from "./footer.column.comp";
 
 export class InfoColumnComp extends FooterColumnComp {
 
-    public static compSlt = '.column.information';
+    public static componentSelector = '.column.information';
 
-    constructor(compLct: Locator) {
-        super(compLct);
+    constructor(componentLocator: Locator) {
+        super(componentLocator);
     };
 }

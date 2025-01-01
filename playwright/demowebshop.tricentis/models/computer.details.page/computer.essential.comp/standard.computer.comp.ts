@@ -1,21 +1,21 @@
 import { Locator } from "@playwright/test";
-import { compSlt } from "@core/models";
+import { componentSelector } from "@core/models";
 import { ComputerEssentialComp } from "./computer.essential.comp";
 
-@compSlt(".product-essential")
+@componentSelector(".product-essential")
 export class StandardComputerComp extends ComputerEssentialComp {
 
-    constructor(compLct: Locator) {
-        super(compLct);
+    constructor(componentLocator: Locator) {
+        super(componentLocator);
     };
 
     selectProcessorType = async (type: string): Promise<void> => {
-        const compSlt = (this.constructor as any).compSlt;
-        console.log(compSlt);
+        const componentSelector = (this.constructor as any).componentSelector;
+        console.log(componentSelector);
         
         const optionLcts = await this.findLocators(
             'label:text-is("Processor"):parent + div option', 
-            {hasParent: compSlt}
+            {hasParent: componentSelector}
         );
         const optionLct = optionLcts.find(async (lct) => (await lct.textContent()).includes(type));
         await this.click(optionLct);

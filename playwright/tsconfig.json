@@ -4,10 +4,9 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "@core/*": ["core/*"],
-      "@modules/*": ["models/*"],
-      "@utilities/*": ["utilities/*"],
-      "@demowebshop.tricentis/*": ["demowebshop.tricentis/*"]
+      "@demowebshop.tricentis/core/*": ["demowebshop.tricentis/core/*"],
+      "@demowebshop.tricentis/models/*": ["demowebshop.tricentis/models/*"],
+      "@demowebshop.tricentis/utilities/*": ["demowebshop.tricentis/utilities/*"]
     },
     "lib": ["ES2023", "DOM"],
     "experimentalDecorators": true

@@ -18,4 +18,8 @@ export class ArrayHelper {
     };
 
     static selectRandomElement = (arr: any[]): any => arr[Math.floor(Math.random() * arr.length)];
+    static getRandomStringFromArray(arr: string[]): string {
+        const randomIndex = Math.floor(Math.random() * arr.length); // Generate a random index
+        return arr[randomIndex]; // Return the element at the random index
+    }
 }

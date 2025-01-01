@@ -3,14 +3,14 @@ import { Locator } from "@playwright/test";
 
 export class SearchComp extends BasePage {
 
-    public static compSlt = '.search-box';
+    public static componentSelector = '.search-box';
 
-    constructor(private compLct: Locator) {
-        super(compLct.page());
-        this.compLct = compLct;
+    constructor(private componentLocator: Locator) {
+        super(componentLocator.page());
+        this.componentLocator = componentLocator;
     };
-    searchBoxLct = (): Locator => this.compLct.locator('input[type="search"]');
-    searchBtnLct = (): Locator => this.compLct.locator('input[type="submit"]');
+    searchBoxLct = (): Locator => this.componentLocator.locator('input[type="search"]');
+    searchBtnLct = (): Locator => this.componentLocator.locator('input[type="submit"]');
 
     searchProduct = async (productName: string) => {
         await this.clickClearFill(this.searchBoxLct(), productName);

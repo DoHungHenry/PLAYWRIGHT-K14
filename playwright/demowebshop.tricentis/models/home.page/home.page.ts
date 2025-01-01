@@ -10,14 +10,14 @@ export class HomePage extends BasePage {
         super(page);
     };
 
-    headerComp = (): HeaderComp => new HeaderComp(this.findLocator(HeaderComp.compSlt));
+    headerComp = (): HeaderComp => new HeaderComp(this.findLocator(HeaderComp.componentSelector));
 
     async ProductItemCompList(): Promise<ProductItemComp[]> {
-        const productItemComponents = await this.findLctsBySlt(ProductItemComp.compSlt);
-        return productItemComponents.map(compLct => new ProductItemComp(compLct));
+        const productItemComponents = await this.findLctsBySlt(ProductItemComp.componentSelector);
+        return productItemComponents.map(componentLocator => new ProductItemComp(componentLocator));
     };
 
-    footerComp = (): FooterComponent => new FooterComponent(this.findLocator(FooterComponent.compSlt));
+    footerComp = (): FooterComponent => new FooterComponent(this.findLocator(FooterComponent.componentSelector));
 
-    footerGenericComp = (): FooterComponent2 => new FooterComponent2(this.findLocator(FooterComponent2.compSlt));
+    footerGenericComp = (): FooterComponent2 => new FooterComponent2(this.findLocator(FooterComponent2.componentSelector));
 }

@@ -3,9 +3,9 @@ import { PlaywrightTestConfig, devices } from '@playwright/test';
 require('dotenv').config();
 
 const config: PlaywrightTestConfig = {
-    testDir: 'tests',
+    // testDir: 'playwright',
     // Look for tests with the ".spec.ts" file extension
-    testMatch: '**/*.spec.ts',
+    // testMatch: '**/*.spec.ts',
     timeout: 180 * 1000,
     expect: {
         /**
@@ -32,7 +32,7 @@ const config: PlaywrightTestConfig = {
         video: 'on-first-retry',
         defaultBrowserType: 'chromium',
         acceptDownloads: true,
-        storageState: './global-auth.json',
+        // storageState: './global-auth.json',
         baseURL: process.env.WEBAPP_BASE_URL,
         testIdAttribute: 'data-teo',
     },

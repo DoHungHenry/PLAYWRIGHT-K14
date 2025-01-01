@@ -3,13 +3,13 @@ import { Locator } from "@playwright/test";
 
 export abstract class FooterColumnComp extends BasePage {
 
-    protected constructor(private compLct: Locator) {
-        super(compLct.page());
-        this.compLct = compLct;
-        this.compLct.scrollIntoViewIfNeeded();
+    protected constructor(private componentLocator: Locator) {
+        super(componentLocator.page());
+        this.componentLocator = componentLocator;
+        this.componentLocator.scrollIntoViewIfNeeded();
     };
 
-    titleLct = () => this.findLocator(this.compLct, '.h3');
+    titleLct = () => this.findLocator(this.componentLocator, '.h3');
 
-    linkLcts = () => this.findLocators(this.compLct, 'li a');
+    linkLcts = () => this.findLocators(this.componentLocator, 'li a');
 }

@@ -3,12 +3,12 @@ import { Locator } from "@playwright/test";
 
 export class LinkComp extends BasePage {
 
-    public static compSlt = '.header-links-wrapper';
+    public static componentSelector = '.header-links-wrapper';
 
-    constructor(private compLct: Locator) {
-        super(compLct.page());
-        this.compLct = compLct;
+    constructor(private componentLocator: Locator) {
+        super(componentLocator.page());
+        this.componentLocator = componentLocator;
     };
 
-    linkLcts = async (): Promise<Locator[]> => await this.findLocators(this.compLct);
+    linkLcts = async (): Promise<Locator[]> => await this.findLocators(this.componentLocator);
 };

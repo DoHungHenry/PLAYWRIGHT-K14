@@ -1,13 +1,5 @@
 export class BooleanHelper {
     static getBooleanValueFromString = (str: string) => {
-        // if (/true|checked/i.test(str)) {
-        //     return true;
-        // } else if (/false | disabled/i.test(str) && !/true|checked/i.test(str)) {
-        //     return false;
-        // } else if (!/true|checked/i.test(str) && !/false | disabled/i.test(str)) {
-        //     return false;
-        // }
-        // throw new Error(`Unexpected state string: ${str}`);
         switch (true) {
             case /true|checked|Yes/gi.test(str):
                 return true;

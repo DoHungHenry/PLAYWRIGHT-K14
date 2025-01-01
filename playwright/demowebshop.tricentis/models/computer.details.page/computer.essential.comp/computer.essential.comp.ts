@@ -3,11 +3,11 @@ import { Locator } from "@playwright/test";
 
 export abstract class ComputerEssentialComp extends BasePage {
 
-    public compLct: Locator;
+    public componentLocator: Locator;
 
-    protected constructor(compLct: Locator) {
-        super(compLct.page());
-        this.compLct = compLct;
+    protected constructor(componentLocator: Locator) {
+        super(componentLocator.page());
+        this.componentLocator = componentLocator;
     };
 
     abstract selectProcessorType(type: string): Promise<void>;
