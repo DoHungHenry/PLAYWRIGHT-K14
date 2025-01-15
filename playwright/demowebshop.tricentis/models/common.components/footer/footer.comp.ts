@@ -1,22 +1,28 @@
-import { BasePage } from "@core/models";
-import { Locator } from "@playwright/test";
-import { InfoColumnComp } from "./child.column/info.column.comp";
-import { FollowUsColumnComp } from "./child.column/follow.us.column.comp";
-import { CustomerServiceColumnComp } from "./child.column/customer.service.comp";
-import { MyAccountColumnComp } from "./child.column/my.account.column.comp";
-import { appendComponentSelector } from "@core/models/base.decorator";
+import { Locator, Page } from "@playwright/test";
+import { InfoColumnComponent } from "./child.column/info.column.comp";
+import { FollowUsColumnComponent } from "./child.column/follow.us.column.comp";
+import { CustomerServiceColumnComponent } from "./child.column/customer.service.comp";
+import { MyAccountColumnComponent } from "./child.column/my.account.column.comp";
+import { BasePage } from "@demowebshop.tricentis/core/models/base.page";
+import { appendComponentSelector } from "@demowebshop.tricentis/core/models/base.decorator";
+
+export interface IFooterColumnComponent {
+    titleLct: () => Promise<Locator>;
+    linkLcts: () => Promise<Locator[]>;
+}
 
 @appendComponentSelector('footer')
 export class FooterComponent extends BasePage {
 
-    // public static componentSelector = '.footer';
-
-    constructor(private componentLocator: Locator) {
-        super(componentLocator.page());
+    constructor(
+        page: Page,
+        protected readonly componentLocator: Locator,
+    ) {
+        super(page);
     };
 
-    infoColumnComp = async (): Promise<InfoColumnComp> => new InfoColumnComp(await this.findLocator(InfoColumnComp.componentSelector));
-    followUsColumnComp = async (): Promise<FollowUsColumnComp> => new FollowUsColumnComp(await this.findLocator(FollowUsColumnComp.componentSelector));
-    customerServiceColumnComp = async (): Promise<CustomerServiceColumnComp> => new CustomerServiceColumnComp(await this.findLocator(CustomerServiceColumnComp.componentSelector));
-    myAccountColumnComp = async (): Promise<MyAccountColumnComp> => new MyAccountColumnComp(await this.findLocator(MyAccountColumnComp.componentSelector));
+    infoColumnComponent = async (): Promise<InfoColumnComponent> => new InfoColumnComponent(await this.findLocator(InfoColumnComponent.componentSelector));
+    followUsColumnComponent = async (): Promise<FollowUsColumnComponent> => new FollowUsColumnComponent(await this.findLocator(FollowUsColumnComponent.componentSelector));
+    customerServiceColumnComponent = async (): Promise<CustomerServiceColumnComponent> => new CustomerServiceColumnComponent(await this.findLocator(CustomerServiceColumnComponent.componentSelector));
+    myAccountColumnComponent = async (): Promise<MyAccountColumnComponent> => new MyAccountColumnComponent(await this.findLocator(MyAccountColumnComponent.componentSelector));
 }

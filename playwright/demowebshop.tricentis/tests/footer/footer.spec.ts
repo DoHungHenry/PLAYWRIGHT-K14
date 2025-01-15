@@ -13,11 +13,11 @@ test.describe('Verify info column in footer', () => {
         const expectedLinkTexts = ["Sitemap", "Shipping & Returns", "Privacy Notice", "Conditions of Use", "About us", "Contact us"];
 
         await page.goto('https://demowebshop.tricentis.com/');
-        const footerInfoComp = new HomePage(page).footerComp().infoColumnComp();
+        const footerInfoComponent = new HomePage(page).footerComponent().infoColumnComponent();
 
         const actualLinkTexts: string[] = [];
 
-        const linkLcts = await footerInfoComp.linkLcts();
+        const linkLcts = await footerInfoComponent.linkLcts();
 
         for (const linkLct of linkLcts) {
             const link = (await linkLct.textContent()).trim();
@@ -34,11 +34,11 @@ test.describe('Verify info column in footer', () => {
         const expectedLinks = ["/sitemap", "/shipping-returns", "/privacy-policy", "/conditions-of-use", "/about-us", "/contactus"];
 
         await page.goto('https://demowebshop.tricentis.com/');
-        const footerInfoComp = new HomePage(page).footerComp().infoColumnComp();
+        const footerInfoComponent = new HomePage(page).footerComponent().infoColumnComponent();
 
         const actualLinks: string[] = [];
 
-        const linkLcts = await footerInfoComp.linkLcts();
+        const linkLcts = await footerInfoComponent.linkLcts();
 
         for (const linkLct of linkLcts) {
             const link = await linkLct.getAttribute('href');
@@ -58,11 +58,11 @@ test.describe('Verify customer service column in footer', () => {
         const expectedLinkTexts = ["Search", "News", "Blog", "Recently viewed products", "Compare products list", "New products"];
 
         await page.goto('https://demowebshop.tricentis.com/');
-        const footerCustomerServiceComp = new HomePage(page).footerComp().customerServiceColumnComp();
+        const footerCustomerServiceComponent = new HomePage(page).footerComponent().customerServiceColumnComponent();
 
         const actualLinkTexts: string[] = [];
 
-        const linkLcts = await footerCustomerServiceComp.linkLcts();
+        const linkLcts = await footerCustomerServiceComponent.linkLcts();
 
         for (const linkLct of linkLcts) {
             const link = (await linkLct.textContent()).trim();
@@ -79,11 +79,11 @@ test.describe('Verify customer service column in footer', () => {
         const expectedLinks = ["/search", "/news", "/blog", "/recentlyviewedproducts", "/compareproducts", "/newproducts"];
 
         await page.goto('https://demowebshop.tricentis.com/');
-        const footerCustomerServiceComp = new HomePage(page).footerComp().customerServiceColumnComp();
+        const footerCustomerServiceComponent = new HomePage(page).footerComponent().customerServiceColumnComponent();
 
         const actualLinks: string[] = [];
 
-        const linkLcts = await footerCustomerServiceComp.linkLcts();
+        const linkLcts = await footerCustomerServiceComponent.linkLcts();
 
         for (const linkLct of linkLcts) {
             const link = await linkLct.getAttribute('href');
@@ -103,11 +103,11 @@ test.describe('Verify my account column in footer', () => {
         const expectedLinkTexts = ["My account", "Orders", "Addresses", "Shopping cart", "Wishlist"];
 
         await page.goto('https://demowebshop.tricentis.com/');
-        const footerMyAccountComp = new HomePage(page).footerComp().myAccountColumnComp();
+        const footerMyAccountComponent = new HomePage(page).footerComponent().myAccountColumnComponent();
 
         const actualLinkTexts: string[] = [];
 
-        const linkLcts = await footerMyAccountComp.linkLcts();
+        const linkLcts = await footerMyAccountComponent.linkLcts();
 
         for (const linkLct of linkLcts) {
             const link = (await linkLct.textContent()).trim();
@@ -124,11 +124,11 @@ test.describe('Verify my account column in footer', () => {
         const expectedLinks = ["/customer/info", "/customer/orders", "/customer/addresses", "/cart", "/wishlist"];
 
         await page.goto('https://demowebshop.tricentis.com/');
-        const footerMyAccountComp = new HomePage(page).footerComp().myAccountColumnComp();
+        const footerMyAccountComponent = new HomePage(page).footerComponent().myAccountColumnComponent();
 
         const actualLinks: string[] = [];
 
-        const linkLcts = await footerMyAccountComp.linkLcts();
+        const linkLcts = await footerMyAccountComponent.linkLcts();
 
         for (const linkLct of linkLcts) {
             const link = await linkLct.getAttribute('href');
@@ -148,11 +148,11 @@ test.describe('Verify follow us column in footer', () => {
         const expectedLinkTexts = ["Facebook", "Twitter", "RSS", "YouTube", "Google+"];
 
         await page.goto('https://demowebshop.tricentis.com/');
-        const footerFollowUsComp = new HomePage(page).footerComp().followUsColumnComp();
+        const footerFollowUsComponent = new HomePage(page).footerComponent().followUsColumnComponent();
 
         const actualLinkTexts: string[] = [];
 
-        const linkLcts = await footerFollowUsComp.linkLcts();
+        const linkLcts = await footerFollowUsComponent.linkLcts();
 
         for (const linkLct of linkLcts) {
             const link = (await linkLct.textContent()).trim();
@@ -169,11 +169,11 @@ test.describe('Verify follow us column in footer', () => {
         const expectedLinks = ["http://www.facebook.com/nopCommerce", "https://twitter.com/nopCommerce", "/news/rss/1", "http://www.youtube.com/user/nopCommerce", "https://plus.google.com/+nopcommerce"];
 
         await page.goto('https://demowebshop.tricentis.com/');
-        const footerFollowUsComp = new HomePage(page).footerComp().followUsColumnComp();
+        const footerFollowUsComponent = new HomePage(page).footerComponent().followUsColumnComponent();
 
         const actualLinks: string[] = [];
 
-        const linkLcts = await footerFollowUsComp.linkLcts();
+        const linkLcts = await footerFollowUsComponent.linkLcts();
 
         for (const linkLct of linkLcts) {
             const link = await linkLct.getAttribute('href');

@@ -1,9 +1,9 @@
 
 import {
-    CheapComputerComp,
+    CheapComputerComponent,
     ComputerDetailsPage,
-    ComputerEssentialComp,
-    StandardComputerComp
+    ComputerEssentialComponent,
+    StandardComputerComponent
 } from 'models/demowebshop.tricentis';
 import { Page, test } from '@playwright/test';
 
@@ -16,12 +16,12 @@ test.beforeAll(async ({ browser }) => {
 
 test('Generic Component', async () => {
     const computerDetailsPage: ComputerDetailsPage = new ComputerDetailsPage(page);
-    const cheapComputerComp: ComputerEssentialComp = computerDetailsPage.computerComp(CheapComputerComp);
-    const standardComputerComp: ComputerEssentialComp = computerDetailsPage.computerComp(StandardComputerComp);
+    const cheapComputerComponent: ComputerEssentialComponent = computerDetailsPage.computerComponent(CheapComponentuterComponent);
+    const standardComputerComponent: ComputerEssentialComponent = computerDetailsPage.computerComponent(StandardComputerComponent);
 
-    await cheapComputerComp.selectProcessorType("123acv");
-    // await cheapComputerComp.selectRAMType('16GB');
+    await cheapComputerComponent.selectProcessorType("123acv");
+    // await cheapComputerComponent.selectRAMType('16GB');
 
-    await standardComputerComp.selectProcessorType("456234asdas");
-    // await standardComputerComp.selectRAMType('32GB');
+    await standardComputerComponent.selectProcessorType("456234asdas");
+    // await standardComputerComponent.selectRAMType('32GB');
 });

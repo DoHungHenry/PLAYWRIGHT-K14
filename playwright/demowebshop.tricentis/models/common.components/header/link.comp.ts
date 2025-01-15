@@ -1,7 +1,7 @@
 import { BasePage } from "@core/models";
 import { Locator } from "@playwright/test";
 
-export class LinkComp extends BasePage {
+export class LinkComponent extends BasePage {
 
     public static componentSelector = '.header-links-wrapper';
 

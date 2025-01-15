@@ -1,4 +1,4 @@
-import { HomePage, ProductItemComp, SearchComp } from 'models/demowebshop.tricentis';
+import { HomePage, ProductItemComponent, SearchComponent } from 'models/demowebshop.tricentis';
 import { test } from '@playwright/test';
 
 
@@ -6,11 +6,11 @@ test('Test Products list as searching result in Page', async ({ page }) => {
 
     await page.goto('https://demowebshop.tricentis.com/');
     const homePage: HomePage = new HomePage(page);
-    const searchComponent: SearchComp = homePage.headerComp().searchComponent();
+    const searchComponent: SearchComponent = homePage.headerComponent().searchComponent();
     await searchComponent.searchBoxLct().click();
     await searchComponent.searchProduct('own');
 
-    const productItemCompList: ProductItemComp[] = await homePage.ProductItemCompList();
+    const productItemCompList: ProductItemComponent[] = await homePage.ProductItemCompList();
 
     for (let productItemComponent of productItemCompList) {
         const productTitle = await (productItemComponent.productTitle()).textContent();

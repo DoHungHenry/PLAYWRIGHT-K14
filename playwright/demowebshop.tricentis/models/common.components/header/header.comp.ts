@@ -1,21 +1,23 @@
-import { BasePage } from "@core/models";
-import { Locator } from "@playwright/test";
-import { LinkComp } from "./link.comp";
-import { LogoComp } from "./logo.comp";
-import { SearchComp } from "./search.comp";
+import { Locator, Page } from "@playwright/test";
+import { LinkComponent } from "./link.comp";
+import { LogoComponent } from "./logo.comp";
+import { SearchComponent } from "./search.comp";
+import { BasePage } from "@demowebshop.tricentis/core/models/base.page";
 
-export class HeaderComp extends BasePage {
+export class HeaderComponent extends BasePage {
 
     public static componentSelector = '.header';
 
-    constructor(private componentLocator: Locator) {
-        super(componentLocator.page());
-        this.componentLocator = componentLocator;
+    constructor(
+        page: Page,
+        protected readonly componentLocator: Locator,
+    ) {
+        super(page);
     };
 
-    linkComponent = async (): Promise<LinkComp>  => new LinkComp(await this.findLocator(LinkComp.componentSelector));
+    linkComponent = async (): Promise<LinkComponent> => new LinkComponent(await this.findLocator(LinkComponent.componentSelector));
 
-    logoComponent = async (): Promise<LogoComp> => new LogoComp(await this.findLocator(LogoComp.componentSelector));
+    logoComponent = async (): Promise<LogoComponent> => new LogoComponent(await this.findLocator(LogoComponent.componentSelector));
 
-    searchComponent = async (): Promise<SearchComp> => new SearchComp(await this.findLocator(SearchComp.componentSelector));
+    searchComponent = async (): Promise<SearchComponent> => new SearchComponent(await this.findLocator(SearchComponent.componentSelector));
 }

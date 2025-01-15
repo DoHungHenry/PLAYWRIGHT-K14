@@ -1,7 +1,7 @@
 import { BasePage } from "@core/models";
 import { Locator } from "@playwright/test";
 
-export abstract class FooterColumnComp extends BasePage {
+export abstract class FooterColumnComponent extends BasePage {
 
     protected constructor(private componentLocator: Locator) {
         super(componentLocator.page());

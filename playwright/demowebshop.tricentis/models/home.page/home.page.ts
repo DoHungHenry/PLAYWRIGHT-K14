@@ -1,23 +1,23 @@
-import { BasePage } from "@core/models";
-import { Page } from "@playwright/test";
-import { FooterComponent, HeaderComp, ProductItemComp } from "../common.components";
-import { FooterComponent2 } from "../common.components/footer.generic";
+import { Locator, Page } from "@playwright/test";
+import { HeaderComponent, ProductItemComponent } from "../common.components";
+import { BasePage } from "@demowebshop.tricentis/core/models/base.page";
+import { FooterComponent } from "../common.components/footer/footer.comp";
 
 
 export class HomePage extends BasePage {
 
-    constructor(page: Page) {
+    public static componentSelector = '.home-page';
+
+    constructor(
+        page: Page,
+        protected readonly componentLocator: Locator,
+    ) {
         super(page);
     };
 
-    headerComp = (): HeaderComp => new HeaderComp(this.findLocator(HeaderComp.componentSelector));
+    headerComponent = async (): Promise<HeaderComponent> => await this.findComponent(HeaderComponent, { parentLocator: this.componentLocator });
 
-    async ProductItemCompList(): Promise<ProductItemComp[]> {
-        const productItemComponents = await this.findLctsBySlt(ProductItemComp.componentSelector);
-        return productItemComponents.map(componentLocator => new ProductItemComp(componentLocator));
-    };
+    productItemComponent = async (): Promise<ProductItemComponent[]> => await this.findComponents(ProductItemComponent, { parentLocator: this.componentLocator });
 
-    footerComp = (): FooterComponent => new FooterComponent(this.findLocator(FooterComponent.componentSelector));
-
-    footerGenericComp = (): FooterComponent2 => new FooterComponent2(this.findLocator(FooterComponent2.componentSelector));
+    footerComponent = async (): Promise<FooterComponent> => await this.findComponent(FooterComponent, { parentLocator: this.componentLocator });
 }

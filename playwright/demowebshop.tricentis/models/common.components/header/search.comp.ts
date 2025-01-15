@@ -1,7 +1,7 @@
 import { BasePage } from "@core/models";
 import { Locator } from "@playwright/test";
 
-export class SearchComp extends BasePage {
+export class SearchComponent extends BasePage {
 
     public static componentSelector = '.search-box';
 

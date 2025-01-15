@@ -11,6 +11,6 @@ test.beforeAll(async ({ browser }) => {
 
 test('Verify footer', async () => {
     await page.goto('https://demowebshop.tricentis.com/');
-    await footerFlows.verifyFooterComp();
+    await footerFlows.verifyFooterComponent();
     await page.waitForTimeout(2000);
 });

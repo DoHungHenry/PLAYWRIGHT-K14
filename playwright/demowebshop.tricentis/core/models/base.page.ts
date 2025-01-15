@@ -2,8 +2,11 @@ import { BrowserContext, expect, Locator, Page } from "@playwright/test";
 import { NumberHelper } from "../utilities/number.helper";
 
 
-interface BasePageConstructor<P extends BasePage> {
-    new(page: Page, componentLocator: Locator): P;
+interface BasePageConstructor<T extends BasePage> {
+    new(
+        page: Page, 
+        ...args: any[]
+    ): T;
 }
 
 interface FindLocatorOptions {
@@ -29,30 +32,25 @@ interface FindLocatorsOptions {
 }
 
 export class BasePage {
-    page: Page;
-    componentLocator: Locator;
+    readonly baseUrl: string = process.env.BASE_URL;
 
-    locatorTimeout: number = 5 * 1000;
-    locatorsTimeout: number = 30 * 1000;
-    CILocatorTimeout: number = 10 * 1000;
-    CILocatorsTimeout: number = 60 * 1000;
+    readonly locatorTimeout: number = 30 * 1000;
+    readonly locatorsTimeout: number = 60 * 1000;
+    readonly frameLocatorTimeout: number = 10 * 1000;
 
-    frameLocatorTimeout: number = 5 * 1000;
-    frameLocatorsTimeout: number = 30 * 1000;
-    CIFrameLocatorTimeout: number = 10 * 1000;
-    CIFrameLocatorsTimeout: number = 60 * 1000;
+    readonly CILocatorTimeout: number = 30 * 1000;
+    readonly CILocatorsTimeout: number = 60 * 1000;
+    readonly CIFrameLocatorTimeout: number = 20 * 1000;
 
-    assertionTimeout: number = 10000;
-
-    constructor(page: Page, componentLocator: Locator) {
-        this.page = page;
-        this.componentLocator = componentLocator;
-    };
+    constructor(
+        protected page: Page,
+    ) {};
 
     findLocator = async (
         selectorOrLocator: string | Locator,
-        options?: FindLocatorOptions
+        options?: FindLocatorOptions,
     ): Promise<Locator> => {
+
         options = options ?? {};
 
         const hasOptions = {
@@ -60,125 +58,69 @@ export class BasePage {
             hasText: options?.hasText
         };
 
-        options.isOptionalLocator = options.isOptionalLocator ?? false;
+        options.isOptionalLocator = options?.isOptionalLocator ?? false;
         options.scrollIntoView = options?.scrollIntoView ?? false;
         options.scrollIntoViewIfNeeded = options?.scrollIntoViewIfNeeded ?? false;
+        // options.nthChild = options?.nthChild ?? 1;
 
         if (options?.frame) {
 
             if (options?.parentSelector) {
-
                 if (options?.role) {
-                    const locator = this.page
-                        .locator(options.parentSelector)
-                        .frameLocator(options.frame)
-                        .locator(
-                            this.getSelectorByRole(selectorOrLocator.toString(), options.role),
-                            hasOptions
-                        );
-
+                    const locator = this.page.locator(options.parentSelector).frameLocator(options.frame).locator(this.getSelectorByRole(selectorOrLocator.toString(), options.role), hasOptions);
                     return await this.waitAndReturnFrameLocator(locator, options);
                 };
 
-                const locator = this.page
-                    .locator(options.parentSelector)
-                    .frameLocator(options.frame)
-                    .locator(selectorOrLocator, hasOptions);
-
+                const locator = this.page.locator(options.parentSelector).frameLocator(options.frame).locator(selectorOrLocator, hasOptions);
                 return await this.waitAndReturnFrameLocator(locator, options);
             };
 
             if (options?.parentLocator) {
-
                 if (options?.role) {
-                    const locator = options.parentLocator
-                        .frameLocator(options.frame)
-                        .locator(
-                            this.getSelectorByRole(selectorOrLocator.toString(), options.role),
-                            hasOptions
-                        );
-
+                    const locator = options.parentLocator.frameLocator(options.frame).locator(this.getSelectorByRole(selectorOrLocator.toString(), options.role), hasOptions);
                     return await this.waitAndReturnFrameLocator(locator, options);
                 };
 
-                const locator = options.parentLocator
-                    .frameLocator(options.frame)
-                    .locator(selectorOrLocator, hasOptions);
-
+                const locator = options.parentLocator.frameLocator(options.frame).locator(selectorOrLocator, hasOptions);
                 return await this.waitAndReturnFrameLocator(locator, options);
             };
 
             if (options?.role) {
-                const locator = this.page
-                    .frameLocator(options.frame)
-                    .locator(
-                        this.getSelectorByRole(selectorOrLocator.toString(), options.role),
-                        hasOptions
-                    );
-
+                const locator = this.page.frameLocator(options.frame).locator(this.getSelectorByRole(selectorOrLocator.toString(), options.role), hasOptions);
                 return await this.waitAndReturnFrameLocator(locator, options);
             };
 
-            const locator = this.page
-                .frameLocator(options.frame)
-                .locator(selectorOrLocator, hasOptions);
-
+            const locator = this.page.frameLocator(options.frame).locator(selectorOrLocator, hasOptions);
             return await this.waitAndReturnFrameLocator(locator, options);
         };
 
         if (options?.parentSelector) {
-
             if (options?.role) {
-                const locator = this.page
-                    .locator(options.parentSelector)
-                    .locator(
-                        this.getSelectorByRole(selectorOrLocator.toString(), options.role),
-                        hasOptions
-                    );
-
-                return await this.waitAndReturnLocator(locator, options);
+                const locator = this.page.locator(options.parentSelector).locator(this.getSelectorByRole(selectorOrLocator.toString(), options.role), hasOptions);
+                return await this.waitAndReturnLocator(locator, options)
             };
 
-            const locator = this.page
-                .locator(options.parentSelector)
-                .locator(selectorOrLocator, hasOptions);
-
-            return await this.waitAndReturnLocator(locator, options);
+            const locator = this.page.locator(options.parentSelector).locator(selectorOrLocator, hasOptions);
+            return await this.waitAndReturnLocator(locator, options)
         };
 
         if (options?.parentLocator) {
-
             if (options?.role) {
-                const locator = options
-                    .parentLocator
-                    .locator(
-                        this.getSelectorByRole(selectorOrLocator.toString(), options.role),
-                        hasOptions
-                    );
-
-                return await this.waitAndReturnLocator(locator, options);
+                const locator = options.parentLocator.locator(this.getSelectorByRole(selectorOrLocator.toString(), options.role), hasOptions);
+                return await this.waitAndReturnLocator(locator, options)
             };
 
-            const locator = options
-                .parentLocator
-                .locator(selectorOrLocator, hasOptions);
-
-            return await this.waitAndReturnLocator(locator, options);
+            const locator = options.parentLocator.locator(selectorOrLocator, hasOptions);
+            return await this.waitAndReturnLocator(locator, options)
         };
 
         if (options?.role) {
-
-            const locator = this.page
-                .locator(
-                    this.getSelectorByRole(selectorOrLocator.toString(), options.role),
-                    hasOptions
-                );
-
-            return await this.waitAndReturnLocator(locator, options);
+            const locator = this.page.locator(this.getSelectorByRole(selectorOrLocator.toString(), options.role), hasOptions);
+            return await this.waitAndReturnLocator(locator, options)
         };
 
         const locator = this.page.locator(selectorOrLocator.toString(), hasOptions);
-        return await this.waitAndReturnLocator(locator, options);
+        return await this.waitAndReturnLocator(locator, options)
     };
 
     findLocators = async (
@@ -192,188 +134,93 @@ export class BasePage {
         };
 
         if (options?.frame) {
-
             if (options?.role) {
-                const locators = await this.page
-                    .frameLocator(options.frame)
-                    .locator(
-                        this.getSelectorByRole(selectorOrLocator.toString(), options.role),
-                        hasOptions
-                    )
-                    .all();
-
-                await Promise.all(
-                    locators.map(locator => locator.waitFor({
-                        state: 'attached',
-                        timeout: this.locatorsTimeout
-                    }))
-                );
-
-                return locators.length > 0 ? locators : [];
+                const locators = await this.page.frameLocator(options.frame).locator(this.getSelectorByRole(selectorOrLocator.toString(), options.role), hasOptions).all();
+                return await this.waitAndReturnLocators(locators);
             };
 
-            const locators = await this.page
-                .frameLocator(options.frame)
-                .locator(selectorOrLocator, hasOptions)
-                .all();
-
-            await Promise.all(
-                locators.map(locator => locator.waitFor({
-                    state: 'attached',
-                    timeout: this.locatorsTimeout
-                }))
-            );
-
-            return locators.length > 0 ? locators : [];
+            const locators = await this.page.frameLocator(options.frame).locator(selectorOrLocator, hasOptions).all();
+            return await this.waitAndReturnLocators(locators);
         };
 
         if (options?.parentSelector) {
             if (options?.role) {
-                const locators = await this.page
-                    .locator(options.parentSelector)
-                    .locator(
-                        this.getSelectorByRole(selectorOrLocator.toString(), options.role),
-                        hasOptions
-                    )
-                    .all();
-
-                await Promise.all(
-                    locators.map(locator => locator.waitFor({
-                        state: 'attached',
-                        timeout: this.locatorsTimeout
-                    }))
-                );
-
-                return locators.length > 0 ? locators : [];
+                const locators = await this.page.locator(options.parentSelector).locator(this.getSelectorByRole(selectorOrLocator.toString(), options.role), hasOptions).all();
+                return await this.waitAndReturnLocators(locators);
             };
 
-            const locators = await this.page
-                .locator(options.parentSelector)
-                .locator(selectorOrLocator, hasOptions)
-                .all();
-
-            await Promise.all(
-                locators.map(locator => locator.waitFor({
-                    state: 'attached',
-                    timeout: this.locatorsTimeout
-                }))
-            );
-
-            return locators.length > 0 ? locators : [];
+            const locators = await this.page.locator(options.parentSelector).locator(selectorOrLocator, hasOptions).all();
+            return await this.waitAndReturnLocators(locators);
         };
 
         if (options?.parentLocator) {
-
             if (options?.role) {
-                const locators = await options.parentLocator
-                    .locator(
-                        this.getSelectorByRole(selectorOrLocator.toString(), options.role),
-                        hasOptions
-                    )
-                    .all();
-
-                await Promise.all(
-                    locators.map(locator => locator.waitFor({
-                        state: 'attached',
-                        timeout: this.locatorsTimeout
-                    }))
-                );
-
-                return locators.length > 0 ? locators : [];
+                const locators = await options.parentLocator.locator(this.getSelectorByRole(selectorOrLocator.toString(), options.role), hasOptions).all();
+                return await this.waitAndReturnLocators(locators);
             };
 
-            const locators = await options.parentLocator
-                .locator(selectorOrLocator, hasOptions)
-                .all();
-
-            await Promise.all(
-                locators.map(locator => locator.waitFor({
-                    state: 'attached', timeout: this.locatorsTimeout
-                }))
-            );
-
-            return locators.length > 0 ? locators : [];
+            const locators = await options.parentLocator.locator(selectorOrLocator, hasOptions).all();
+            return await this.waitAndReturnLocators(locators);
         };
 
         if (options?.role) {
-            const locators = await this.page
-                .locator(
-                    this.getSelectorByRole(selectorOrLocator.toString(), options.role),
-                    hasOptions
-                )
-                .all();
-
-            await Promise.all(
-                locators.map(locator => locator.waitFor({
-                    state: 'attached',
-                    timeout: this.locatorsTimeout
-                }))
-            );
-
-            return locators.length > 0 ? locators : [];
+            const locators = await this.page.locator(this.getSelectorByRole(selectorOrLocator.toString(), options.role), hasOptions).all();
+            return await this.waitAndReturnLocators(locators);
         };
 
-        const locators = await this.page
-            .locator(selectorOrLocator.toString(), hasOptions)
-            .all();
-
-        await Promise.all(
-            locators.map(locator => locator.waitFor({
-                state: 'attached',
-                timeout: this.locatorsTimeout
-            }))
-        );
-
-        return locators.length > 0 ? locators : [];
+        const locators = await this.page.locator(selectorOrLocator.toString(), hasOptions).all();
+        return await this.waitAndReturnLocators(locators);
     };
 
     findComponent = async <C extends BasePage>(
         Class: BasePageConstructor<C>,
         options?: FindLocatorOptions,
+        ...args: any[]
     ): Promise<C> => {
         if (!Class) throw new Error(`Invalid Class: ${Class}`);
 
         options = options ?? {};
 
-        const hasOptions = {
-            has: options?.hasChildLocator,
-            hasText: options?.hasText
-        };
-
         options.isOptionalLocator = options.isOptionalLocator ?? false;
         options.scrollIntoView = options?.scrollIntoView ?? false;
         options.scrollIntoViewIfNeeded = options?.scrollIntoViewIfNeeded ?? false;
 
+        const hasOptions = {
+            has: options?.hasChildLocator,
+            hasText: options?.hasText
+        };
+
         if (options?.parentSelector) {
             const componentLocator = await this.findLocator(
-                (Class as any).componentSelector, 
+                (Class as any).componentSelector,
                 { parentSelector: options.parentSelector, ...hasOptions }
             );
 
-            return new Class(this.page, componentLocator);
+            return new Class(this.page, componentLocator, ...args);
         };
 
         if (options?.parentLocator) {
             const componentLocator = await this.findLocator(
-                (Class as any).componentSelector, 
+                (Class as any).componentSelector,
                 { parentLocator: options.parentLocator, ...hasOptions }
             );
 
-            return new Class(this.page, componentLocator);
+            return new Class(this.page, componentLocator, ...args);
         };
 
         const componentLocator = await this.findLocator(
-            (Class as any).componentSelector, 
+            (Class as any).componentSelector,
             { ...hasOptions }
         );
 
-        return new Class(this.page, componentLocator);
-    }
+        return new Class(this.page, componentLocator, ...args);
+    };
 
     findComponents = async <C extends BasePage>(
         Class: BasePageConstructor<C>,
         options?: FindLocatorsOptions,
-    ) => {
+        ...args: any[]
+    ): Promise<C[]> => {
 
         const hasOptions = {
             has: options?.hasChildLocator,
@@ -382,32 +229,32 @@ export class BasePage {
 
         if (options?.parentSelector) {
             const componentLocators = await this.findLocators(
-                (Class as any).componentSelector, 
+                (Class as any).componentSelector,
                 { parentSelector: options.parentSelector, ...hasOptions }
             );
 
-            return componentLocators.length > 0 
-                ? componentLocators.map(componentLocator => new Class(this.page, componentLocator)) 
+            return componentLocators.length > 0
+                ? componentLocators.map(componentLocator => { return new Class(this.page, componentLocator, ...args) })
                 : [];
         };
 
         if (options?.parentLocator) {
             const componentLocators = await this.findLocators(
-                (Class as any).componentSelector, 
+                (Class as any).componentSelector,
                 { parentLocator: options.parentLocator, ...hasOptions }
             );
 
-            return componentLocators.length > 0 
-                ? componentLocators.map(componentLocator => new Class(this.page, componentLocator)) 
+            return componentLocators.length > 0
+                ? componentLocators.map(componentLocator => { return new Class(this.page, componentLocator, ...args) })
                 : [];
         };
 
         const componentLocators = await this.findLocators(
-            (Class as any).componentSelector, 
+            (Class as any).componentSelector,
             { ...hasOptions }
         );
-        return componentLocators.length > 0 
-            ? componentLocators.map(componentLocator => new Class(this.page, componentLocator)) 
+        return componentLocators.length > 0
+            ? componentLocators.map(componentLocator => { return new Class(this.page, componentLocator, ...args) })
             : [];
     }
 
@@ -562,6 +409,11 @@ export class BasePage {
                 };
             };
         };
+    };
+
+    private waitAndReturnLocators = async (locators: Locator[]): Promise<Locator[]> => {
+        await Promise.all(locators.map(locator => locator.waitFor({ state: 'attached', timeout: process.env.CI ? this.CILocatorsTimeout : this.locatorsTimeout })));
+        return locators.length > 0 ? locators : [];
     };
 
     private waitAndReturnFrameLocator = async (

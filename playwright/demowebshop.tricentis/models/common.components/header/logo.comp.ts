@@ -1,7 +1,7 @@
 import { BasePage } from "@core/models";
 import { Locator } from "@playwright/test";
 
-export class LogoComp extends BasePage {
+export class LogoComponent extends BasePage {
 
     public static componentSelector = '.header-logo';
 

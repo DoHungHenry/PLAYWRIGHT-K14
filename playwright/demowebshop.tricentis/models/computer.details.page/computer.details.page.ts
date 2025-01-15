@@ -1,15 +1,15 @@
 import { Locator, Page } from "@playwright/test";
 import { BasePage } from "@core/models";
-import { ComputerEssentialComp } from "./computer.essential.comp";
+import { ComputerEssentialComponent } from "./computer.essential.comp";
 
 /* 
-- To make sure computerComp() method get parameter which is ComputerEssentialComp type (not instance of ComputerEssentialComp), 
-we don't need do this using java, but with ts, we need to define type for the parameter of computerComp method
-=> khi computerComp() nhận Teo param (Teo có type là is a ComputerEssentialComp): <Teo extends ComputerEssentialComp>
+- To make sure computerComponent() method get parameter which is ComputerEssentialComponent type (not instance of ComputerEssentialComponent), 
+we don't need do this using java, but with ts, we need to define type for the parameter of computerComponent method
+=> khi computerComponent() nhận Teo param (Teo có type là is a ComponentuterEssentialComponent): <Teo extends ComponentuterEssentialComponent>
 thì đem constructor của Teo ra ngoài để init 1 cái object của Teo: [new(componentLocator: Locator)] 
 sau đó trả về Teo type (chứ không phải là instance của Teo): [=> Teo;]
 */
-export type ComputerCompConstructor<Teo extends ComputerEssentialComp> = new(componentLocator: Locator) => Teo;
+export type ComputerComponentConstructor<Teo extends ComputerEssentialComponent> = new (componentLocator: Locator) => Teo;
 
 export class ComputerDetailsPage extends BasePage {
 
@@ -18,14 +18,14 @@ export class ComputerDetailsPage extends BasePage {
     };
 
     /* 
-    - Boundary Generic type: <Teo extends ComputerEssentialComp>
-    - Purpose of this computerComp method is to get componentSelector value from Teo class (Teo is a ComputerEssentialComp)
-    that is a ComputerEssentialComp type (only concrete class of ComputerEssentialComp because ComputerEssentialComp is abstract class)
+    - Boundary Generic type: <Teo extends ComputerEssentialComponent>
+    - Purpose of this computerComponent method is to get componentSelector value from Teo class (Teo is a ComputerEssentialComponent)
+    that is a ComputerEssentialComponent type (only concrete class of ComputerEssentialComponent because ComputerEssentialComponent is abstract class)
     */
-    computerComp<Teo extends ComputerEssentialComp>(
-        computerCompClass: ComputerCompConstructor<Teo>
+    computerComponent<Teo extends ComputerEssentialComponent>(
+        computerComponentClass: ComputerComponentConstructor<Teo>
     ): Teo {
-        console.log((computerCompClass as any).selectorValue);
-        return new computerCompClass(this.page.locator((computerCompClass as any).selectorValue));
+        console.log((computerComponentClass as any).selectorValue);
+        return new computerComponentClass(this.page.locator((computerComponentClass as any).selectorValue));
     };
 }

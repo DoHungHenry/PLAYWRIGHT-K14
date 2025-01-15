@@ -1,7 +1,7 @@
 import { Locator } from "@playwright/test";
-import { FooterColumnComp } from "./footer.column.comp";
+import { FooterColumnComponent } from "./footer.column.comp";
 
-export class InfoColumnComp extends FooterColumnComp {
+export class InfoColumnComponent extends FooterColumnComponent {
 
     public static componentSelector = '.column.information';
 

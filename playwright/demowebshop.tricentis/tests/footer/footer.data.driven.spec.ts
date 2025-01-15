@@ -16,7 +16,7 @@ inputData.forEach(inputPage => {
     const { pageName, slug } = inputPage;
     test(`Verify footer on ${pageName}`, async () => {
         await page.goto(process.env.BASE_URL + slug);
-        await footerFlows.verifyFooterComp();
+        await footerFlows.verifyFooterComponent();
         await page.waitForTimeout(2000);
     });
 });

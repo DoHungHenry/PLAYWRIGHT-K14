@@ -1,5 +1,4 @@
-import { BasePage } from "@core/models";
-import { FooterColumnComp, HomePage } from "models/demowebshop.tricentis";
+import { BasePage } from "@demowebshop.tricentis/core/models/base.page";
 import { Page } from "@playwright/test";
 import assert from "assert";
 
@@ -14,7 +13,7 @@ export class FooterFlows extends BasePage {
     };
 
     // Service method
-    async verifyFooterComp(): Promise<void> {
+    async verifyFooterComponent(): Promise<void> {
         await this.verifyInfoColumn();
         await this.verifyCustomerServiceColumn();
         await this.verifyMyAccountColumn();
@@ -26,20 +25,20 @@ export class FooterFlows extends BasePage {
         const expectedLinkTexts = ["Sitemap", "Shipping & Returns", "Privacy Notice", "Conditions of Use", "About us", "Contact us"];
         const expectedLinks = ["/sitemap", "/shipping-returns", "/privacy-policy", "/conditions-of-use", "/about-us", "/contactus"];
 
-        const footerInfoComp = this.homePage.footerComp().infoColumnComp();
+        const footerInfoComponent = this.homePage.footerComponent().infoColumnComponent();
 
-        await this.verifyFooterColumn(footerInfoComp, expectedLinkTexts, expectedLinks);
+        await this.verifyFooterColumn(footerInfoComponent, expectedLinkTexts, expectedLinks);
 
         this.page.waitForTimeout(2000);
     };
 
     private async verifyCustomerServiceColumn(): Promise<void> {
-        const expectedLinkTexts = ["Search", "News", "Blog", "Recently viewed products", "Compare products list", "New products"];
+        const expectedLinkTexts = ["Search", "News", "Blog", "Recently viewed products", "Componentare products list", "New products"];
         const expectedLinks = ["/search", "/news", "/blog", "/recentlyviewedproducts", "/compareproducts", "/newproducts"];
 
-        const footerCustomerServiceComp = this.homePage.footerComp().customerServiceColumnComp();
+        const footerCustomerServiceComponent = this.homePage.footerComponent().customerServiceColumnComponent();
 
-        await this.verifyFooterColumn(footerCustomerServiceComp, expectedLinkTexts, expectedLinks);
+        await this.verifyFooterColumn(footerCustomerServiceComponent, expectedLinkTexts, expectedLinks);
 
         this.page.waitForTimeout(2000);
     };
@@ -48,9 +47,9 @@ export class FooterFlows extends BasePage {
         const expectedLinkTexts = ["My account", "Orders", "Addresses", "Shopping cart", "Wishlist"];
         const expectedLinks = ["/customer/info", "/customer/orders", "/customer/addresses", "/cart", "/wishlist"];
 
-        const footerMyAccountComp = this.homePage.footerComp().myAccountColumnComp();
+        const footerMyAccountComponent = this.homePage.footerComponent().myAccountColumnComponent();
 
-        await this.verifyFooterColumn(footerMyAccountComp, expectedLinkTexts, expectedLinks);
+        await this.verifyFooterColumn(footerMyAccountComponent, expectedLinkTexts, expectedLinks);
 
         this.page.waitForTimeout(2000);
     };
@@ -59,22 +58,22 @@ export class FooterFlows extends BasePage {
         const expectedLinkTexts = ["Facebook", "Twitter", "RSS", "YouTube", "Google+"];
         const expectedLinks = ["http://www.facebook.com/nopCommerce", "https://twitter.com/nopCommerce", "/news/rss/1", "http://www.youtube.com/user/nopCommerce", "https://plus.google.com/+nopcommerce"];
 
-        const footerFollowUsComp = this.homePage.footerComp().followUsColumnComp();
+        const footerFollowUsComponent = this.homePage.footerComponent().followUsColumnComponent();
 
-        await this.verifyFooterColumn(footerFollowUsComp, expectedLinkTexts, expectedLinks);
+        await this.verifyFooterColumn(footerFollowUsComponent, expectedLinkTexts, expectedLinks);
 
         this.page.waitForTimeout(2000);
     };
 
     private async verifyFooterColumn(
-        footerColumnComp: FooterColumnComp,
+        footerColumnComponent: FooterColumnComponent,
         expectedLinkTexts: string[],
         expectedLinks: string[]
     ): Promise<void> {
         let actualLinkTexts: string[] = [];
         let actualLinks: string[] = [];
 
-        const linkLcts = await footerColumnComp.linkLcts();
+        const linkLcts = await footerColumnComponent.linkLcts();
 
         for (const linkLct of linkLcts) {
             const link = (await linkLct.textContent()).trim();

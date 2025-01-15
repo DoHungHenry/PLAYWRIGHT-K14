@@ -8,12 +8,12 @@ test('Narrow down - dynamic ', async ({ page }) => {
     await page.goto('https://the-internet.herokuapp.com/dynamic_controls', { waitUntil: 'networkidle' });
 
     // checkbox comp locators
-    const checkboxCompLct = page.locator('#checkbox-example');
-    const checkboxLct = checkboxCompLct.locator('input[type="checkbox"]');
-    const removeBtnLct = checkboxCompLct.locator('button:has-text("Remove")');
-    const addBtnLct = checkboxCompLct.locator('button:has-text("Add")');
-    const itsGoneTxtLct = checkboxCompLct.locator('p:has-text("It\'s gone!")');
-    const itsBackTxtLct = checkboxCompLct.locator('p:has-text("It\'s back!")');
+    const checkboxComponentLct = page.locator('#checkbox-example');
+    const checkboxLct = checkboxComponentLct.locator('input[type="checkbox"]');
+    const removeBtnLct = checkboxComponentLct.locator('button:has-text("Remove")');
+    const addBtnLct = checkboxComponentLct.locator('button:has-text("Add")');
+    const itsGoneTxtLct = checkboxComponentLct.locator('p:has-text("It\'s gone!")');
+    const itsBackTxtLct = checkboxComponentLct.locator('p:has-text("It\'s back!")');
 
     // interact with checkbox comp: click remove
     const start1 = performance.now();
@@ -33,10 +33,10 @@ test('Narrow down - dynamic ', async ({ page }) => {
     console.log(`Execution time: ${end2 - start2} ms`);
 
     // input comp locators
-    const inputCompLct = page.locator('#input-example');
-    const inputLct = inputCompLct.locator('input');
-    const enableBtnLct = inputCompLct.locator('button:has-text("Enable")');
-    const disableBtnLct = inputCompLct.locator('button:has-text("Disable")');
+    const inputComponentLct = page.locator('#input-example');
+    const inputLct = inputComponentLct.locator('input');
+    const enableBtnLct = inputComponentLct.locator('button:has-text("Enable")');
+    const disableBtnLct = inputComponentLct.locator('button:has-text("Disable")');
 
     // interact with input comp: enable, fill, disable
     const start3 = performance.now();
