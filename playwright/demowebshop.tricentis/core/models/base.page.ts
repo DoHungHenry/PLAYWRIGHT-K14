@@ -34,12 +34,12 @@ interface FindLocatorsOptions {
 export class BasePage {
     readonly baseUrl: string = process.env.BASE_URL;
 
-    readonly locatorTimeout: number = 30 * 1000;
-    readonly locatorsTimeout: number = 60 * 1000;
+    readonly locatorTimeout: number = 5 * 1000;
+    readonly locatorsTimeout: number = 10 * 1000;
     readonly frameLocatorTimeout: number = 10 * 1000;
 
-    readonly CILocatorTimeout: number = 30 * 1000;
-    readonly CILocatorsTimeout: number = 60 * 1000;
+    readonly CILocatorTimeout: number = 10 * 1000;
+    readonly CILocatorsTimeout: number = 20 * 1000;
     readonly CIFrameLocatorTimeout: number = 20 * 1000;
 
     constructor(

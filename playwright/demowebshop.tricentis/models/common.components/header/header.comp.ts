@@ -15,9 +15,14 @@ export class HeaderComponent extends BasePage {
         super(page);
     };
 
-    linkComponent = async (): Promise<LinkComponent> => new LinkComponent(await this.findLocator(LinkComponent.componentSelector));
+    // linkComponent = async (): Promise<LinkComponent> => new LinkComponent(await this.findLocator(LinkComponent.componentSelector));
 
-    logoComponent = async (): Promise<LogoComponent> => new LogoComponent(await this.findLocator(LogoComponent.componentSelector));
+    // logoComponent = async (): Promise<LogoComponent> => new LogoComponent(await this.findLocator(LogoComponent.componentSelector));
 
-    searchComponent = async (): Promise<SearchComponent> => new SearchComponent(await this.findLocator(SearchComponent.componentSelector));
+    // searchComponent = async (): Promise<SearchComponent> => new SearchComponent(await this.findLocator(SearchComponent.componentSelector));
+    linkComponent = async (): Promise<LinkComponent> => await this.findComponent(LinkComponent, { parentLocator: this.componentLocator });
+
+    logoComponent = async (): Promise<LogoComponent> => await this.findComponent(LogoComponent, { parentLocator: this.componentLocator });
+
+    searchComponent = async (): Promise<SearchComponent> => await this.findComponent(SearchComponent, { parentLocator: this.componentLocator });
 }

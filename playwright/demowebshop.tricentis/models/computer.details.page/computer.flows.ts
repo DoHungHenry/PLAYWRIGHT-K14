@@ -1,4 +1,4 @@
-import { BasePage } from "@core/models";
+import { BasePage } from "@demowebshop.tricentis/core/models";
 import { Page } from "@playwright/test";
 import { ComputerComponentConstructor, ComputerDetailsPage } from "./computer.details.page";
 import { ComputerEssentialComponent } from "./computer.essential.comp";

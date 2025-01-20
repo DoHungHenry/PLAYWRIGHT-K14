@@ -1,6 +1,8 @@
 import { BasePage } from "@demowebshop.tricentis/core/models/base.page";
+import { HomePage } from "@demowebshop.tricentis/models/home.page";
 import { Page } from "@playwright/test";
 import assert from "assert";
+import { FooterColumnComponent } from "../child.column";
 
 
 export class FooterFlows extends BasePage {
@@ -9,7 +11,7 @@ export class FooterFlows extends BasePage {
 
     constructor(page: Page) {
         super(page);
-        this.homePage = new HomePage(page);
+        this.homePage = new HomePage(page, this.page.locator(HomePage.componentSelector));
     };
 
     // Service method
@@ -25,7 +27,7 @@ export class FooterFlows extends BasePage {
         const expectedLinkTexts = ["Sitemap", "Shipping & Returns", "Privacy Notice", "Conditions of Use", "About us", "Contact us"];
         const expectedLinks = ["/sitemap", "/shipping-returns", "/privacy-policy", "/conditions-of-use", "/about-us", "/contactus"];
 
-        const footerInfoComponent = this.homePage.footerComponent().infoColumnComponent();
+        const footerInfoComponent = await (await this.homePage.footerComponent()).infoColumnComponent();
 
         await this.verifyFooterColumn(footerInfoComponent, expectedLinkTexts, expectedLinks);
 
@@ -33,10 +35,10 @@ export class FooterFlows extends BasePage {
     };
 
     private async verifyCustomerServiceColumn(): Promise<void> {
-        const expectedLinkTexts = ["Search", "News", "Blog", "Recently viewed products", "Componentare products list", "New products"];
+        const expectedLinkTexts = ["Search", "News", "Blog", "Recently viewed products", "Compare products list", "New products"];
         const expectedLinks = ["/search", "/news", "/blog", "/recentlyviewedproducts", "/compareproducts", "/newproducts"];
 
-        const footerCustomerServiceComponent = this.homePage.footerComponent().customerServiceColumnComponent();
+        const footerCustomerServiceComponent = await (await this.homePage.footerComponent()).customerServiceColumnComponent();
 
         await this.verifyFooterColumn(footerCustomerServiceComponent, expectedLinkTexts, expectedLinks);
 
@@ -47,7 +49,7 @@ export class FooterFlows extends BasePage {
         const expectedLinkTexts = ["My account", "Orders", "Addresses", "Shopping cart", "Wishlist"];
         const expectedLinks = ["/customer/info", "/customer/orders", "/customer/addresses", "/cart", "/wishlist"];
 
-        const footerMyAccountComponent = this.homePage.footerComponent().myAccountColumnComponent();
+        const footerMyAccountComponent = await (await this.homePage.footerComponent()).myAccountColumnComponent();
 
         await this.verifyFooterColumn(footerMyAccountComponent, expectedLinkTexts, expectedLinks);
 
@@ -58,7 +60,7 @@ export class FooterFlows extends BasePage {
         const expectedLinkTexts = ["Facebook", "Twitter", "RSS", "YouTube", "Google+"];
         const expectedLinks = ["http://www.facebook.com/nopCommerce", "https://twitter.com/nopCommerce", "/news/rss/1", "http://www.youtube.com/user/nopCommerce", "https://plus.google.com/+nopcommerce"];
 
-        const footerFollowUsComponent = this.homePage.footerComponent().followUsColumnComponent();
+        const footerFollowUsComponent = await (await this.homePage.footerComponent()).followUsColumnComponent();
 
         await this.verifyFooterColumn(footerFollowUsComponent, expectedLinkTexts, expectedLinks);
 

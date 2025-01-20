@@ -1,5 +1,5 @@
 import { Locator, Page } from "@playwright/test";
-import { BasePage } from "@core/models";
+import { BasePage } from "@demowebshop.tricentis/core/models";
 import { ComputerEssentialComponent } from "./computer.essential.comp";
 
 /* 

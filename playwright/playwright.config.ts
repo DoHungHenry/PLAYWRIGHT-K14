@@ -20,23 +20,21 @@ const config: PlaywrightTestConfig = {
     projects: [
         {
             name: 'chromium',
-            use: { ...devices['Desktop Chrome'] }
+            use: {
+                ...devices['Desktop Chrome'],
+                actionTimeout: 10000,
+                headless: false,
+                trace: 'on-first-retry',
+                screenshot: 'only-on-failure',
+                video: 'on-first-retry',
+                defaultBrowserType: 'chromium',
+                acceptDownloads: true,
+                // storageState: './global-auth.json',
+                baseURL: process.env.BASE_URL,
+                testIdAttribute: 'data-teo',
+            }
         }
     ],
-    use: {
-        /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
-        actionTimeout: 10000,
-        headless: false,
-        trace: 'on-first-retry',
-        screenshot: 'only-on-failure',
-        video: 'on-first-retry',
-        defaultBrowserType: 'chromium',
-        acceptDownloads: true,
-        // storageState: './global-auth.json',
-        baseURL: process.env.WEBAPP_BASE_URL,
-        testIdAttribute: 'data-teo',
-    },
-
     // globalSetup: './global-setup.ts',
 };
 

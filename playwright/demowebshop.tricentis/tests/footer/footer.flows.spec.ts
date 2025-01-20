@@ -1,4 +1,4 @@
-import { FooterFlows } from 'models/demowebshop.tricentis';
+import { FooterFlows } from '@demowebshop.tricentis/models/common.components/footer/services/footer.flows';
 import { Page, test } from '@playwright/test';
 
 let page: Page;

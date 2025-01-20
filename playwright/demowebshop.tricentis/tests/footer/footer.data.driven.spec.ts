@@ -2,7 +2,7 @@
 
 import { Page, test } from '@playwright/test';
 import inputData from './footer.data.driven.input.json';
-import { FooterFlows } from 'models/demowebshop.tricentis';
+import { FooterFlows } from '@demowebshop.tricentis/models/common.components/footer/services/footer.flows';
 
 let page: Page;
 let footerFlows: FooterFlows;
@@ -15,7 +15,7 @@ test.beforeAll(async ({ browser }) => {
 inputData.forEach(inputPage => {
     const { pageName, slug } = inputPage;
     test(`Verify footer on ${pageName}`, async () => {
-        await page.goto(process.env.BASE_URL + slug);
+        await footerFlows.gotoUrl(footerFlows.baseUrl + slug);
         await footerFlows.verifyFooterComponent();
         await page.waitForTimeout(2000);
     });

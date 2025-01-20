@@ -1,4 +1,4 @@
-import { BasePage } from "@core/models";
+import { BasePage } from "@demowebshop.tricentis/core/models";
 import { Locator } from "@playwright/test";
 
 export abstract class ComputerEssentialComponent extends BasePage {

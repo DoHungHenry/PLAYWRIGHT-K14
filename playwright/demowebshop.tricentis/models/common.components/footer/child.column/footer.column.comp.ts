@@ -1,15 +1,16 @@
-import { BasePage } from "@core/models";
-import { Locator } from "@playwright/test";
+import { BasePage } from "@demowebshop.tricentis/core/models";
+import { Locator, Page } from "@playwright/test";
 
 export abstract class FooterColumnComponent extends BasePage {
 
-    protected constructor(private componentLocator: Locator) {
-        super(componentLocator.page());
-        this.componentLocator = componentLocator;
-        this.componentLocator.scrollIntoViewIfNeeded();
-    };
+    constructor(
+        page: Page,
+        protected readonly componentLocator: Locator,
+    ) {
+        super(page);
+    }
 
-    titleLct = () => this.findLocator(this.componentLocator, '.h3');
+    titleLct = () => this.findLocator('.h3', { parentLocator: this.componentLocator });
 
-    linkLcts = () => this.findLocators(this.componentLocator, 'li a');
+    linkLcts = () => this.findLocators('li a', { parentLocator: this.componentLocator });
 }

@@ -1,13 +1,15 @@
-import { BasePage } from "@core/models";
-import { Locator } from "@playwright/test";
+import { BasePage } from "@demowebshop.tricentis/core/models";
+import { Locator, Page } from "@playwright/test";
 
 export class LinkComponent extends BasePage {
 
     public static componentSelector = '.header-links-wrapper';
 
-    constructor(private componentLocator: Locator) {
-        super(componentLocator.page());
-        this.componentLocator = componentLocator;
+    constructor(
+        page: Page,
+        protected readonly componentLocator: Locator,
+    ) {
+        super(page);
     };
 
     linkLcts = async (): Promise<Locator[]> => await this.findLocators(this.componentLocator);

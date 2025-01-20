@@ -1,11 +1,14 @@
-import { Locator } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { FooterColumnComponent } from "./footer.column.comp";
 
 export class MyAccountColumnComponent extends FooterColumnComponent {
 
     public static componentSelector = '.column.my-account';
 
-    constructor(componentLocator: Locator) {
-        super(componentLocator);
-    };
+    constructor(
+        page: Page,
+        protected readonly componentLocator: Locator,
+    ) {
+        super(page, componentLocator);
+    }
 }
