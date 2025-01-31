@@ -1,5 +1,5 @@
-// import { HomePage } from '@demowebshop.tricentis/models/home.page';
 // import { expect, Page, test } from '@playwright/test';
+// import { HomePage } from 'demowebshop.tricentis/models/home.page/home.page';
 
 // let page: Page;
 

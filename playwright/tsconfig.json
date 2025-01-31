@@ -2,13 +2,27 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "moduleResolution": "node",
     "baseUrl": "./",
-    "paths": {
-      "@demowebshop.tricentis/core/*": ["demowebshop.tricentis/core/*"],
-      "@demowebshop.tricentis/models/*": ["demowebshop.tricentis/models/*"],
-      "@demowebshop.tricentis/utilities/*": ["demowebshop.tricentis/utilities/*"]
-    },
     "lib": ["ES2023", "DOM"],
+    "target": "ES2023",
     "experimentalDecorators": true
   }
 }
+
+// {
+//   "compilerOptions": {
+//     "esModuleInterop": true,
+//     "resolveJsonModule": true,
+//     "moduleResolution": "node",
+//     "baseUrl": "./",
+//     "paths": {
+//       "@core/*": ["core/*"],
+//       "@models/*": ["models/*"],
+//       "@e2e/*": ["e2e/*"],
+//       "@global.setup.teardown/*": ["global.setup.teardown/*"]
+//     },
+//     "lib": ["ES2023", "DOM"],
+//     "target": "ES2023",
+//   }
+// }

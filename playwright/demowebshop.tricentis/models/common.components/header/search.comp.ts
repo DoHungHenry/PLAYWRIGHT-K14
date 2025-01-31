@@ -1,5 +1,5 @@
-import { BasePage } from "@demowebshop.tricentis/core/models";
 import { Locator, Page } from "@playwright/test";
+import { BasePage } from "demowebshop.tricentis/core/models/base.page";
 
 export class SearchComponent extends BasePage {
 
@@ -11,11 +11,7 @@ export class SearchComponent extends BasePage {
     ) {
         super(page);
     };
-    
-    searchBoxLct = (): Locator => this.componentLocator.locator('input[type="search"]');
-    searchBtnLct = (): Locator => this.componentLocator.locator('input[type="submit"]');
 
-    searchProduct = async (productName: string) => {
-        await this.clickClearFill(this.searchBoxLct(), productName);
-    };
+    searchBoxLct = async (): Promise<Locator> => await this.findLocator('input[type="search"]', { parentLocator: this.componentLocator });
+    searchBtnLct = async (): Promise<Locator> => await this.findLocator('input[type="submit"]', { parentLocator: this.componentLocator });
 }

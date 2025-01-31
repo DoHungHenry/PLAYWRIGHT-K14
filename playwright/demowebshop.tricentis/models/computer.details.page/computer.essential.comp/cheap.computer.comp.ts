@@ -1,15 +1,15 @@
-// import { Locator } from "@playwright/test";
-// import { ComputerEssentialComponent } from "./computer.essential.comp";
-// import { appendComponentSelector } from "@demowebshop.tricentis/core/models";
+import { Locator } from "@playwright/test";
+import { ComputerEssentialComponent } from "./computer.essential.comp";
 
-// @appendComponentSelector(".product-essential")
-// export class CheapComputerComponent extends ComputerEssentialComponent {
+export class CheapComputerComponent extends ComputerEssentialComponent {
 
-//     constructor(componentLocator: Locator) {
-//         super(componentLocator);
-//     };
+    static componentSelector = '.product-essential';
 
-//     selectProcessorType = async (type: string): Promise<void> => await this.selectComponentOption(type);
+    constructor(componentLocator: Locator) {
+        super(componentLocator);
+    };
 
-//     selectRAMType = async (type: string): Promise<void> => await this.selectComponentOption(type);
-// }
+    selectProcessorType = async (type: string): Promise<void> => await this.selectComponentOption(type);
+
+    selectRAMType = async (type: string): Promise<void> => await this.selectComponentOption(type);
+}

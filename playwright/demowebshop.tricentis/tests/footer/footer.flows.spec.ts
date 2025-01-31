@@ -1,5 +1,5 @@
-import { FooterFlows } from '@demowebshop.tricentis/models/common.components/footer/services/footer.flows';
 import { Page, test } from '@playwright/test';
+import { FooterFlows } from 'demowebshop.tricentis/models/common.components/footer/services/footer.flows';
 
 let page: Page;
 let footerFlows: FooterFlows;

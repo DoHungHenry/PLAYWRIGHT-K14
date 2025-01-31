@@ -1,6 +1,6 @@
-import { CheapComputerComponent } from '@demowebshop.tricentis/models/computer.details.page';
-import { OrderComputerFlow } from '@demowebshop.tricentis/models/computer.details.page/computer.flows';
 import { Page, test } from '@playwright/test';
+import { CheapComputerComponent } from 'demowebshop.tricentis/models/computer.details.page/computer.essential.comp/cheap.computer.comp';
+import { OrderComputerFlow } from 'demowebshop.tricentis/models/computer.details.page/computer.flows';
 
 let page: Page;
 

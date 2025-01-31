@@ -1,7 +1,8 @@
 import { Locator, Page } from "@playwright/test";
-import { HeaderComponent, ProductItemComponent } from "../common.components";
-import { BasePage } from "@demowebshop.tricentis/core/models/base.page";
 import { FooterComponent } from "../common.components/footer/footer.comp";
+import { BasePage } from "demowebshop.tricentis/core/models/base.page";
+import { HeaderComponent } from "../common.components/header/header.comp";
+import { ProductItemComponent } from "../common.components/product.item.card/product.item.comp";
 
 
 export class HomePage extends BasePage {

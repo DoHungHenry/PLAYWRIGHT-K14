@@ -2,7 +2,7 @@
 
 import { Page, test } from '@playwright/test';
 import inputData from './footer.data.driven.input.json';
-import { FooterFlows } from '@demowebshop.tricentis/models/common.components/footer/services/footer.flows';
+import { FooterFlows } from 'demowebshop.tricentis/models/common.components/footer/services/footer.flows';
 
 let page: Page;
 let footerFlows: FooterFlows;

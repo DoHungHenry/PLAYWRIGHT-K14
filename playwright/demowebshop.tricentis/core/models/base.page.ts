@@ -1,5 +1,6 @@
 import { BrowserContext, expect, Locator, Page } from "@playwright/test";
 import { NumberHelper } from "../utilities/number.helper";
+import { HomePage } from "demowebshop.tricentis/models/home.page/home.page";
 
 
 interface BasePageConstructor<T extends BasePage> {
@@ -472,6 +473,10 @@ export class BasePage {
             default: return null;
         };
     };
+
+    // homePage = async (): Promise<HomePage> => {
+    //     return await this.findComponent(HomePage);
+    // }
 }
 
 export enum LocatorRole {

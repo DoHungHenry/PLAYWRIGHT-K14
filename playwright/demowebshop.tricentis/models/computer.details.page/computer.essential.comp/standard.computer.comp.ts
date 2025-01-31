@@ -1,29 +1,29 @@
-// import { Locator } from "@playwright/test";
-// import { ComputerEssentialComponent } from "./computer.essential.comp";
-// import { appendComponentSelector } from "@demowebshop.tricentis/core/models";
+import { Locator } from "@playwright/test";
+import { ComputerEssentialComponent } from "./computer.essential.comp";
 
-// @appendComponentSelector(".product-essential")
-// export class StandardComputerComponent extends ComputerEssentialComponent {
+export class StandardComputerComponent extends ComputerEssentialComponent {
 
-//     constructor(componentLocator: Locator) {
-//         super(componentLocator);
-//     };
+    static componentSelector: string = '.product-essential';
 
-//     selectProcessorType = async (type: string): Promise<void> => {
-//         const componentSelector = (this.constructor as any).componentSelector;
-//         console.log(componentSelector);
+    constructor(componentLocator: Locator) {
+        super(componentLocator);
+    };
 
-//         const optionLcts = await this.findLocators(
-//             'label:text-is("Processor"):parent + div option',
-//             { hasParent: componentSelector }
-//         );
-//         const optionLct = optionLcts.find(async (lct) => (await lct.textContent()).includes(type));
-//         await this.click(optionLct);
-//     };
+    selectProcessorType = async (type: string): Promise<void> => {
+        const componentSelector = (this.constructor as any).componentSelector;
+        console.log(componentSelector);
 
-//     selectRAMType = async (type: string): Promise<void> => {
-//         const optionLcts = await this.findLocators('label:text-is("RAM"):parent + div option')
-//         const optionLct = optionLcts.find(async (lct) => (await lct.textContent()).includes(type));
-//         await this.click(optionLct);
-//     };
-// }
+        const optionLcts = await this.findLocators(
+            'label:text-is("Processor"):parent + div option',
+            { parentLocator: componentSelector }
+        );
+        const optionLct = optionLcts.find(async (lct) => (await lct.textContent()).includes(type));
+        await this.clickOnLocator(optionLct);
+    };
+
+    selectRAMType = async (type: string): Promise<void> => {
+        const optionLcts = await this.findLocators('label:text-is("RAM"):parent + div option')
+        const optionLct = optionLcts.find(async (lct) => (await lct.textContent()).includes(type));
+        await this.clickOnLocator(optionLct);
+    };
+}

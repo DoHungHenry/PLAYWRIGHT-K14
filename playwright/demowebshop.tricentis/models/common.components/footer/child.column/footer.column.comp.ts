@@ -1,7 +1,7 @@
-import { BasePage } from "@demowebshop.tricentis/core/models";
 import { Locator, Page } from "@playwright/test";
+import { BasePage } from "demowebshop.tricentis/core/models/base.page";
 
-export abstract class FooterColumnComponent extends BasePage {
+export class FooterColumnComponent extends BasePage {
 
     constructor(
         page: Page,

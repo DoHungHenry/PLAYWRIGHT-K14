@@ -1,6 +1,6 @@
 {
   "name": "PLAYWRIGHT-K14",
-  "authors": "HungDo",
+  "author": "HungDo",
   "version": "1.0.0",
   "scripts": {
     "test-headed": "npx playwright test --headed",
@@ -10,16 +10,15 @@
   },
   "dependencies": {
     "@ngneat/falso": "^7.1.0",
-    "@playwright/test": "^1.46.0",
+    "@playwright/test": "1.46.0",
     "csv-parser": "^3.0.0",
     "date-and-time": "^3.3.0",
     "decimal.js": "^10.4.3",
     "dotenv": "^16.4.5",
-    "playwright": "^1.46.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.9.0",
+    "@types/node": "20.12.3",
     "@types/uuid": "^9.0.8",
     "csv": "^6.3.1"
   }

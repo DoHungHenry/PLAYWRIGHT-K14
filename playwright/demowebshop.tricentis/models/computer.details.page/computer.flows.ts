@@ -1,7 +1,7 @@
-import { BasePage } from "@demowebshop.tricentis/core/models";
 import { Page } from "@playwright/test";
 import { ComputerComponentConstructor, ComputerDetailsPage } from "./computer.details.page";
-import { ComputerEssentialComponent } from "./computer.essential.comp";
+import { BasePage } from "demowebshop.tricentis/core/models/base.page";
+import { ComputerEssentialComponent } from "./computer.essential.comp/computer.essential.comp";
 
 export class OrderComputerFlow extends BasePage {
 

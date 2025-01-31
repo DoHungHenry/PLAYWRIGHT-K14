@@ -1,5 +1,5 @@
-import { BasePage } from "@demowebshop.tricentis/core/models";
 import { Locator } from "@playwright/test";
+import { BasePage } from "demowebshop.tricentis/core/models/base.page";
 
 export abstract class ComputerEssentialComponent extends BasePage {
 
@@ -20,6 +20,6 @@ export abstract class ComputerEssentialComponent extends BasePage {
         // const optionLcts = await this.findLocators(`label:has-text("${type}"):parent + dd option`);
         const optionLcts = await this.findLocators(`//label[contains(text(), "${type}")]`);
         const optionLct = optionLcts.find(async lct => (await lct.textContent()).includes(type));
-        await this.click(optionLct);
+        await this.clickOnLocator(optionLct);
     }
 }
